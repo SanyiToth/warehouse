@@ -7,6 +7,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {HeaderModule} from "../shared/header/header.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductsModule} from "../feature/products/products.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ProductsModule} from "../feature/products/products.module";
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
     CoreRoutingModule,
