@@ -4,6 +4,7 @@ import {TableListComponent} from './table-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {ContextMenuModule} from "../context-menu/context-menu.module";
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatIconModule,
     MatTableModule,
     MatButtonModule,
-
+    ContextMenuModule
   ],
   exports: [
     TableListComponent
