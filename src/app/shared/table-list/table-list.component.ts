@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../feature/products/product.interface";
-import {Store} from "../../feature/stores/store.interface";
+
 
 @Component({
   selector: 'app-table-list',
@@ -8,7 +7,7 @@ import {Store} from "../../feature/stores/store.interface";
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  @Input() data!: Product[];
+  @Input() data = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
   constructor() {
