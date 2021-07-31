@@ -16,6 +16,5 @@ export class StoresContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.stores = this.route.snapshot.data.stores;
-    console.log('stores', this.stores)
   }
 }
