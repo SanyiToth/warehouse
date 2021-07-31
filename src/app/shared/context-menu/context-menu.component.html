@@ -1,4 +1,4 @@
-<button mat-icon-button [matMenuTriggerFor]="settingsMenu">
+<button mat-icon-button (click)="onClick()" [matMenuTriggerFor]="settingsMenu">
   <mat-icon>settings</mat-icon>
 </button>
 <mat-menu #settingsMenu="matMenu">

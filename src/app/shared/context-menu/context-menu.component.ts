@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Product} from "../../feature/products/product.interface";
+import {Store} from "../../feature/stores/store.interface";
 
 @Component({
   selector: 'app-context-menu',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./context-menu.component.css']
 })
 export class ContextMenuComponent implements OnInit {
+  @Input() element!: Product | Store;
+  @Output() clickedElement = new EventEmitter<Product | Store>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  onClick() {
+    console.log(this.element);
+    this.clickedElement.emit(this.element);
+  }
 }

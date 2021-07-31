@@ -4,7 +4,7 @@
       <th mat-header-cell *matHeaderCellDef>{{item | uppercase}}</th>
       <td mat-cell *matCellDef="let element">
         <div class="btn-edit" *ngIf="item === 'actions';">
-          <app-context-menu></app-context-menu>
+          <app-context-menu [element]="element" (clickedElement)="getClickedElement($event)"></app-context-menu>
         </div>
         {{element[item]}}
       </td>
@@ -14,7 +14,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <button mat-raised-button (click)="OnAddNew()" color="primary" type="button">
+  <button mat-raised-button (click)="onAddNew()" color="primary" type="button">
     Add new
     <mat-icon>add</mat-icon>
   </button>
