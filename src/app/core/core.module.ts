@@ -6,6 +6,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {HeaderModule} from "../shared/header/header.module";
 import {HttpClientModule} from "@angular/common/http";
+import {ProductsModule} from "../feature/products/products.module";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     FlexLayoutModule,
     CoreRoutingModule,
-    HeaderModule
+    HeaderModule,
+    ProductsModule
   ],
   exports: [
     CoreComponent

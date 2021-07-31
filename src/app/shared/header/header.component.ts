@@ -8,12 +8,8 @@ import {Component, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit {
   routes = [
     {
-      path: "Home",
-      routerLink: ""
-    },
-    {
       path: "Products",
-      routerLink: "/products"
+      routerLink: ""
     },
     {
       path: "Store",
