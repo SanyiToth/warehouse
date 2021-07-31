@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StoresService} from "../../../shared/services/store/stores.service";
+import {Store} from "../store.interface";
 
 @Component({
   selector: 'app-store-container',
@@ -7,10 +8,17 @@ import {StoresService} from "../../../shared/services/store/stores.service";
   styleUrls: ['./stores-container.component.css']
 })
 export class StoresContainerComponent implements OnInit {
+  stores: Store[] = [];
 
-  constructor(private storeService:StoresService) { }
+  constructor(private storesService: StoresService) {
+  }
 
   ngOnInit(): void {
+    this.storesService.getStores()
+      .subscribe(resp => {
+        this.stores = resp;
+      }, error => {
+      })
   }
 
 }
