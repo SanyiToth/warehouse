@@ -9,6 +9,7 @@ import {Store} from "../store.interface";
 export class StoresListComponent implements OnInit {
 
   @Input() stores!: Store[];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
   constructor() {
   }

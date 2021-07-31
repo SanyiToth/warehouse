@@ -6,10 +6,10 @@ import {Product} from "../product.interface";
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit, AfterViewInit {
+export class ProductsListComponent implements OnInit {
 
   @Input() products!: Product[];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'length', 'date'];
 
   constructor() {
   }
@@ -18,8 +18,5 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
-    console.log('products-list', this.products)
-  }
 
 }

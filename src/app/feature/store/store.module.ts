@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StoresContainerComponent } from './stores-container/stores-container.component';
 import { StoreRoutingModule } from './store-routing.module';
 import { StoresListComponent } from './stores-list/stores-list.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -13,7 +14,8 @@ import { StoresListComponent } from './stores-list/stores-list.component';
   ],
   imports: [
     CommonModule,
-    StoreRoutingModule
+    StoreRoutingModule,
+    MatTableModule
   ]
 })
 export class StoreModule { }
