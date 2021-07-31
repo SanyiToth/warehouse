@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 @Component({
   selector: 'app-products-container',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productsService: ProductsService) {
+  }
 
   ngOnInit(): void {
+    this.productsService.getProducts()
+      .subscribe(resp => {
+        console.log("resp", resp)
+      })
+
   }
 
 }
