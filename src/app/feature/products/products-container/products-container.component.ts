@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../../shared/services/products/products.service";
 import {Product} from "../product.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-products-container',
@@ -12,18 +12,11 @@ export class ProductsContainerComponent implements OnInit {
   products: Product[] = [];
 
 
-  constructor(private productsService: ProductsService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.productsService.getProducts()
-      .subscribe(resp => {
-        this.products = resp;
-        console.log("this.products", this.products
-        )
-      }, error => {
-      })
-
+    this.products = this.route.snapshot.data.products;
+    console.log('products', this.products)
   }
-
 }

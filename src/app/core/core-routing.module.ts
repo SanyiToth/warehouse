@@ -4,9 +4,10 @@ import {RouterModule, Routes} from "@angular/router";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {LoginComponent} from "../feature/login/login.component";
 import {ProductsContainerComponent} from "../feature/products/products-container/products-container.component";
+import {ProductsResolver} from "../shared/resolvers/products.resolver";
 
 const routes: Routes = [
-  {path: '', component: ProductsContainerComponent},
+  {path: '', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
   {path: 'stores', loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)},
   {path: 'login', component: LoginComponent},
   {path: '404', component: NotFoundComponent},

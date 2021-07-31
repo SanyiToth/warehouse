@@ -7,13 +7,15 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  @Input() data!:any;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  @Input() data!: any;
+  displayedColumns!: string[];
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.displayedColumns = Object.keys(this.data[0]);
+    console.log('data', this.displayedColumns);
   }
 
 }
