@@ -18,7 +18,6 @@ export class ContextMenuComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.element);
     this.clickedElement.emit(this.element);
   }
 }
