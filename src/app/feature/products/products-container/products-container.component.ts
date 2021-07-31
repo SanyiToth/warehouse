@@ -18,8 +18,8 @@ export class ProductsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.productsService.getProducts()
       .subscribe(resp => {
-        console.log("resp", resp)
         this.products = resp;
+      }, error => {
       })
 
   }
