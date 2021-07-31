@@ -15,6 +15,8 @@ export class TableListComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayedColumns = Object.keys(this.data[0]);
+   /* this.displayedColumns = [...this.displayedColumns, "actions"]*/
+
     console.log('data', this.displayedColumns);
   }
 
