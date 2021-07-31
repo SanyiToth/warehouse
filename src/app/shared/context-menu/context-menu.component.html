@@ -1,5 +1,12 @@
-<button mat-button [matMenuTriggerFor]="settingsMenu">Menu</button>
+<button mat-icon-button [matMenuTriggerFor]="settingsMenu">
+  <mat-icon>settings</mat-icon>
+</button>
 <mat-menu #settingsMenu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+  <button mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span></button>
 </mat-menu>
