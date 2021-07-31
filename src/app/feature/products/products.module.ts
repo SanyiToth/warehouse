@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsContainerComponent } from './products-container/products-container.component';
 import {ProductsRoutingModule} from "./products-routing.module";
 import { ProductsListComponent } from './products-list/products-list.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -13,7 +14,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    MatTableModule
   ],
   exports:[ProductsContainerComponent]
 })
