@@ -9,7 +9,7 @@ import {Store} from "../../../feature/store/store.interface";
 })
 export class StoresService {
 
-  static PATH = "/store";
+  static PATH = "/stores";
 
   constructor(private http: HttpClient) {
   }

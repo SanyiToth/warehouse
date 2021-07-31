@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StoresService} from "../../../shared/services/store/stores.service";
+import {StoresService} from "../../../shared/services/stores/stores.service";
 import {Store} from "../store.interface";
 
 @Component({
@@ -17,6 +17,7 @@ export class StoresContainerComponent implements OnInit {
     this.storesService.getStores()
       .subscribe(resp => {
         this.stores = resp;
+        console.log("resp", this.stores)
       }, error => {
       })
   }

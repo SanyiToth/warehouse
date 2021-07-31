@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
     },
     {
       path: "Store",
-      routerLink: "/store"
+      routerLink: "/stores"
     }
   ]
 
