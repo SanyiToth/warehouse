@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../../shared/services/products/products.service";
+import {Product} from "../product.interface";
 
 @Component({
   selector: 'app-products-container',
@@ -8,6 +9,9 @@ import {ProductsService} from "../../../shared/services/products/products.servic
 })
 export class ProductsContainerComponent implements OnInit {
 
+  products!: Product[];
+
+
   constructor(private productsService: ProductsService) {
   }
 
@@ -15,6 +19,7 @@ export class ProductsContainerComponent implements OnInit {
     this.productsService.getProducts()
       .subscribe(resp => {
         console.log("resp", resp)
+        this.products = resp;
       })
 
   }
