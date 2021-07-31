@@ -1,5 +1,36 @@
 {
   "users": [],
-  "products": [],
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "length": 25,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "length": 30,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "length": 33,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 4,
+      "name": "Product 4",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 5,
+      "name": "Product 5",
+      "length": 44,
+      "date": "2012-04-23T18:25:43.511Z"
+    }
+  ],
   "store": []
 }
