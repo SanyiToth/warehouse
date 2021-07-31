@@ -18,4 +18,7 @@ export class TableListComponent implements OnInit {
     console.log('data', this.displayedColumns);
   }
 
+  OnAddNew() {
+
+  }
 }
