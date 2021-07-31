@@ -24,7 +24,7 @@ export class TableListComponent implements OnInit {
 
   }
 
-  getClickedElement($event: Product | Store) {
+  getDeletedElement($event: Product | Store) {
     this.clickedElement = $event;
   }
 }

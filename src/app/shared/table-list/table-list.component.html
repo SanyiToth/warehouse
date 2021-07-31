@@ -4,7 +4,7 @@
       <th mat-header-cell *matHeaderCellDef>{{item | uppercase}}</th>
       <td mat-cell *matCellDef="let element">
         <div class="btn-edit" *ngIf="item === 'actions';">
-          <app-context-menu [element]="element" (clickedElement)="getClickedElement($event)"></app-context-menu>
+          <app-context-menu [element]="element" (clickedElement)="getDeletedElement($event)"></app-context-menu>
         </div>
         {{element[item]}}
       </td>

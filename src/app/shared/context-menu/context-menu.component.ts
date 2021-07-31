@@ -9,15 +9,16 @@ import {Store} from "../../feature/stores/store.interface";
 })
 export class ContextMenuComponent implements OnInit {
   @Input() element!: Product | Store;
-  @Output() clickedElement = new EventEmitter<Product | Store>();
+  @Output() deletedElement = new EventEmitter<Product | Store>();
 
   constructor() {
   }
 
+
   ngOnInit(): void {
   }
 
-  onClick() {
-    this.clickedElement.emit(this.element);
+  onDelete() {
+    this.deletedElement.emit(this.element);
   }
 }
