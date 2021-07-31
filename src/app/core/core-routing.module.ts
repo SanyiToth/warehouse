@@ -4,11 +4,16 @@ import {RouterModule, Routes} from "@angular/router";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {LoginComponent} from "../feature/login/login.component";
 import {ProductsContainerComponent} from "../feature/products/products-container/products-container.component";
-import {ProductsResolver} from "../shared/resolvers/products.resolver";
+import {ProductsResolver} from "../shared/resolvers/products/products.resolver";
+import {StoresResolver} from "../shared/resolvers/stores/stores.resolver";
 
 const routes: Routes = [
   {path: '', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
-  {path: 'stores', loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)},
+  {
+    path: 'stores',
+    resolve: {stores: StoresResolver},
+    loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)
+  },
   {path: 'login', component: LoginComponent},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '404'}

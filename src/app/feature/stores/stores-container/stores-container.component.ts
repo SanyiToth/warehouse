@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoresService} from "../../../shared/services/stores/stores.service";
 import {Store} from "../store.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-store-container',
@@ -10,16 +11,11 @@ import {Store} from "../store.interface";
 export class StoresContainerComponent implements OnInit {
   stores: Store[] = [];
 
-  constructor(private storesService: StoresService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.storesService.getStores()
-      .subscribe(resp => {
-        this.stores = resp;
-        console.log("resp", this.stores)
-      }, error => {
-      })
+    this.stores = this.route.snapshot.data.stores;
+    console.log('stores', this.stores)
   }
-
 }
