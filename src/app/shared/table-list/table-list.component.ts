@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Product} from "../../feature/products/product.interface";
+import {Store} from "../../feature/store/store.interface";
 
 @Component({
   selector: 'app-table-list',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
+  @Input() data!: Product[];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
