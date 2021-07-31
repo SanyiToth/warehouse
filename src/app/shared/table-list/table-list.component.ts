@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "../../feature/stores/store.interface";
 import {Product} from "../../feature/products/product.interface";
 
@@ -10,8 +10,9 @@ import {Product} from "../../feature/products/product.interface";
 })
 export class TableListComponent implements OnInit {
   @Input() data!: any;
+  @Output() deletedElementToParent = new EventEmitter<Product | Store>();
   displayedColumns!: string[];
-  clickedElement!: Product | Store;
+  deletedElement!: Product | Store;
 
   constructor() {
   }
@@ -24,7 +25,8 @@ export class TableListComponent implements OnInit {
 
   }
 
-  getDeletedElement($event: Product | Store) {
-    this.clickedElement = $event;
+  getDeletedElement($event: any) {
+    this.deletedElement = $event;
+    this.deletedElementToParent.emit(this.deletedElement);
   }
 }
