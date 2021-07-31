@@ -9,7 +9,7 @@ import {Product} from "../product.interface";
 export class ProductsListComponent implements OnInit {
 
   @Input() products!: Product[];
-  displayedColumns: string[] = ['position', 'name', 'length', 'date'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
   constructor() {
   }
