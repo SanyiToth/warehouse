@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoresContainerComponent } from './stores-container/stores-container.component';
-import { StoreRoutingModule } from './store-routing.module';
+import { StoresRoutingModule } from './stores-routing.module';
 import {MatTableModule} from "@angular/material/table";
 
 
@@ -12,8 +12,8 @@ import {MatTableModule} from "@angular/material/table";
   ],
   imports: [
     CommonModule,
-    StoreRoutingModule,
+    StoresRoutingModule,
     MatTableModule
   ]
 })
-export class StoreModule { }
+export class StoresModule { }

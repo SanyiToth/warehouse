@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../feature/products/product.interface";
-import {Store} from "../../feature/store/store.interface";
+import {Store} from "../../feature/stores/store.interface";
 
 @Component({
   selector: 'app-table-list',

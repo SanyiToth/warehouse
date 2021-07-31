@@ -7,7 +7,7 @@ import {ProductsContainerComponent} from "../feature/products/products-container
 
 const routes: Routes = [
   {path: '', component: ProductsContainerComponent},
-  {path: 'store', loadChildren: () => import('../feature/store/store.module').then(m => m.StoreModule)},
+  {path: 'stores', loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)},
   {path: 'login', component: LoginComponent},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '404'}
