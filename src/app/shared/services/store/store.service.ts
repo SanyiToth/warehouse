@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment.prod";
+import {Store} from "../../../feature/store/store.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class StoreService {
   constructor(private http: HttpClient) {
   }
 
-  getStore(): Observable<any[]> {
-    return this.http.get<any[]>(environment.API_URL + StoreService.PATH);
+  getStore(): Observable<Store[]> {
+    return this.http.get<Store[]>(environment.API_URL + StoreService.PATH);
   }
 }
