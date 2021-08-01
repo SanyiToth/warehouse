@@ -3,6 +3,7 @@ import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "../../stores/store.interface";
 import {ProductsService} from "../../../shared/services/products/products.service";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-products-container',
@@ -25,8 +26,14 @@ export class ProductsContainerComponent implements OnInit {
   getDeletedElement($event: any) {
     this.deletedElement = $event;
     this.productsService.deleteProduct(this.deletedElement.id)
-      .subscribe(resp => {
-        console.log('resp', resp)
-      })
+      .pipe(
+        switchMap(() => this.productsService.getProducts()))
+      .subscribe(products => {
+          this.products = products;
+        }, errorMsg => {
+
+        }
+      )
   }
+
 }
