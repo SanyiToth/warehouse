@@ -23,7 +23,7 @@ export class ProductsContainerComponent implements OnInit {
     this.products = this.route.snapshot.data.products;
   }
 
-  getDeletedElement($event: any) {
+  getDeletedElement($event: Product | Store) {
     this.deletedElement = $event;
     this.productsService.deleteProduct(this.deletedElement.id)
       .pipe(

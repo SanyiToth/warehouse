@@ -22,7 +22,7 @@ export class StoresContainerComponent implements OnInit {
     this.stores = this.route.snapshot.data.stores;
   }
 
-  getDeletedElement($event: any) {
+  getDeletedElement($event: Product | Store) {
     this.deletedElement = $event;
     this.storesService.deleteStore(this.deletedElement.id)
       .pipe(
@@ -30,7 +30,6 @@ export class StoresContainerComponent implements OnInit {
       .subscribe(stores => {
           this.stores = stores;
         }, errorMsg => {
-
         }
       )
   }
