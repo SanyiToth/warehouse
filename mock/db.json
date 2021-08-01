@@ -2,30 +2,52 @@
   "users": [],
   "products": [
     {
+      "id": 1,
+      "name": "Product 1",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
       "id": 4,
       "name": "Product 4",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 5,
+      "name": "Product 5",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 6,
+      "name": "Product 6",
+      "length": 22,
+      "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 7,
+      "name": "Product 7",
       "length": 22,
       "date": "2012-04-23T18:25:43.511Z"
     }
   ],
   "stores": [
     {
-      "id": 1,
-      "storeId": "xyz25",
-      "address": "lorem ipsum 33",
-      "weight": 35,
-      "length": 45
-    },
-    {
       "id": 2,
       "storeId": "xyz26",
-      "address": "lorem ipsum 33",
-      "weight": 35,
-      "length": 45
-    },
-    {
-      "id": 3,
-      "storeId": "xyz27",
       "address": "lorem ipsum 33",
       "weight": 35,
       "length": 45
