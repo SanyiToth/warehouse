@@ -8,6 +8,7 @@ import {HeaderModule} from "../shared/header/header.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductsModule} from "../feature/products/products.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthModule} from "../shared/auth/auth.module";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   ],
   imports: [
     CommonModule,
+    AuthModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
