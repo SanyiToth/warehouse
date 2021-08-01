@@ -1,4 +1,14 @@
 a {
   text-decoration: none;
-  color: inherit;
+  color: white;
+}
+
+mat-toolbar {
+  width: 90%;
+  margin: auto;
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }

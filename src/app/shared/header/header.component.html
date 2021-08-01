@@ -1,6 +1,9 @@
-<mat-toolbar >
+<mat-toolbar color="primary">
   <mat-nav-list fxLayout="row" *ngFor="let route of routes">
-    <a mat-list-item [routerLink]="route.routerLink">{{route.path}}</a>
+    <button mat-button [routerLink]="route.routerLink">{{route.path}}</button>
   </mat-nav-list>
-  <button mat-button routerLink="/login">Login</button>
+  <span class="example-spacer"></span>
+  <button mat-icon-button  aria-label="user icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
 </mat-toolbar>

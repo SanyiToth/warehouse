@@ -6,6 +6,8 @@ import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -19,7 +21,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatListModule,
     RouterModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule
   ],
   exports: [
     HeaderComponent
