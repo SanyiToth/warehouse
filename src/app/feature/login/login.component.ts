@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -8,16 +9,20 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(private fb: FormBuilder, private router: Router) {
+  }
 
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+  loginForm: FormGroup = this.fb.group({
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required]]
   });
 
+
   submit() {
-    console.log('form value', this.form.value)
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
+    if (this.loginForm.valid) {
+      console.log('form value', this.loginForm.value);
+      this.submitEM.emit(this.loginForm.value);
+      this.loginForm.reset();
     }
   }
 
@@ -25,6 +30,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  get email(): AbstractControl | null {
+    return this.loginForm.get('email');
+  }
+
+  get password(): AbstractControl | null {
+    return this.loginForm.get('password');
+  }
+
 }
 
 
