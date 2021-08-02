@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {DialogComponent} from "./dialog/dialog.component";
 import {MatButtonModule} from "@angular/material/button";
 
@@ -9,7 +9,8 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [DialogComponent],
   imports: [
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
-export class DialogModule { }
+export class DialogModule {
+}
