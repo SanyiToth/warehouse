@@ -11,6 +11,10 @@ export class DialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<DialogComponent>) {
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
   ngOnInit(): void {
   }
 
