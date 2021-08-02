@@ -1,7 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {AuthService} from "../../shared/auth/auth.service";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -10,7 +8,7 @@ import {AuthService} from "../../shared/auth/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+  constructor(private fb: FormBuilder) {
   }
 
   loginForm: FormGroup = this.fb.group({
@@ -21,20 +19,19 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (this.loginForm.valid) {
-      this.authService
-        .login(this.loginForm.value)
-        .subscribe(
-          (user) => {
-            console.log("user", user);
-            console.log("isLoggedIn", this.authService.isLoggedIn());
-            /*            this.notifications.open("Successful login!");*/
-            setTimeout(() => {
-              this.router.navigate([""]);
-            }, 2000);
-          },
-          error => {
-            /*    this.notifications.open(error);*/
-          });
+      this.formValueToHeader.emit(this.loginForm.value);
+      /*  this.authService
+          .login(this.loginForm.value)
+          .subscribe(
+            (user) => {
+              this.notifications.open("Successful login!");
+              setTimeout(() => {
+                this.router.navigate([""]);
+              }, 2000);
+            },
+            error => {
+              this.notifications.open(error);
+            });*/
       this.loginForm.reset();
     }
   }
@@ -50,6 +47,8 @@ export class LoginComponent implements OnInit {
   get password(): AbstractControl | null {
     return this.loginForm.get('password');
   }
+
+  @Output() formValueToHeader = new EventEmitter();
 
 }
 

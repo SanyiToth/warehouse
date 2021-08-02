@@ -3,8 +3,15 @@
     <button mat-button [routerLink]="route.routerLink">{{route.path}}</button>
   </mat-nav-list>
   <span class="example-spacer"></span>
-<!--  <span class="user">User</span>-->
-  <button mat-button routerLink="/login">
+  <div
+    *ngIf="loggedInUser">
+    <span class="user">{{loggedInUser.name}}</span>
+    <button mat-button (click)="onLogOut()">
+      Logout
+    </button>
+  </div>
+  <button mat-button *ngIf="!isLoggedIn" (click)="onLogIn()" routerLink="/login">
     Login
   </button>
+
 </mat-toolbar>
