@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import { LoginRoutingModule } from './login-routing.module';
 import {HeaderModule} from "../../shared/header/header.module";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {HeaderModule} from "../../shared/header/header.module";
     MatButtonModule,
     MatInputModule,
     LoginRoutingModule,
-    HeaderModule
+    HeaderModule,
+    MatIconModule
   ]
   , exports: [LoginComponent]
 })

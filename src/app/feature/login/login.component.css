@@ -1,22 +1,33 @@
-/*
-:host {
+
+
+.login-container {
+  margin:100px auto;
+  height: 100%;
+  width: 100%;
+  align-items: center;
   display: flex;
+}
+
+form {
+  width: 100%;
+}
+
+.login-content {
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+.login-toolbar {
   justify-content: center;
-  margin: 100px 0;
-}*/
+}
 
 .mat-form-field {
   width: 100%;
-  min-width: 300px;
+  display: block;
 }
 
-mat-card-title,
-mat-card-content {
-  display: flex;
-  justify-content: center;
-}
-
-.button {
-  display: flex;
-  justify-content: flex-end;
+.mat-raised-button {
+  width: 100%;
+  margin-top: 15px;
 }

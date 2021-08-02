@@ -30,19 +30,22 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.loggedInUser = this.currentUser.getLoggedInUser();
+    this.authorization();
   }
 
   onLogOut() {
+    setTimeout(() => {
+      this.authService.logout();
+      this.authorization();
+      this.router.navigate(['/login']);
+    }, 1000);
+
+  }
+
+  authorization() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.authService.logout();
     this.loggedInUser = this.currentUser.getLoggedInUser();
-
   }
 
-  onLogIn() {
 
-
-  }
 }
