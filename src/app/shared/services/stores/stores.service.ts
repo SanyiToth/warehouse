@@ -28,6 +28,6 @@ export class StoresService {
   }
 
   patchStore(store: Store, id: number): Observable<Store> {
-    return this.http.post<Store>(environment.API_URL + StoresService.PATH + `/${id}`, store);
+    return this.http.patch<Store>(environment.API_URL + StoresService.PATH + `/${id}`, store);
   }
 }

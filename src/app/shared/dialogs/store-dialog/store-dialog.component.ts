@@ -29,31 +29,33 @@ export class StoreDialogComponent implements OnInit {
 
 
   onSubmit() {
-    /* if (this.storeForm.valid)
-       this.storesService.postStore(this.storeForm.value)
-         .subscribe(resp => {
-           this.notification.open('You saved successfully!');
-           this.dialogRef.close()
-         }, error => {
-           this.notification.open('Something went wrong. Try again later!');
-         })*/
 
-        this.storesService.patchStore(this.storeForm.value,this.id)
-          .subscribe(resp => {
-            this.notification.open('You saved successfully!');
-            this.dialogRef.close()
-          }, error => {
-            this.notification.open('Something went wrong. Try again later!');
-          })
-
+    if (this.data) {
+      this.storesService.patchStore(this.storeForm.value, this.id)
+        .subscribe(resp => {
+          this.notification.open('You saved successfully!');
+          this.dialogRef.close()
+        }, error => {
+          this.notification.open('Something went wrong. Try again later!');
+        })
+    } else {
+      this.storesService.postStore(this.storeForm.value)
+        .subscribe(resp => {
+          this.notification.open('You saved successfully!');
+          this.dialogRef.close()
+        }, error => {
+          this.notification.open('Something went wrong. Try again later!');
+        })
+    }
   }
 
   ngOnInit(): void {
-    this.id = this.data.element.id;
     if (!this.data) {
+      this.id = this.data?.element?.id;
+
       this.storeForm.get('storeId')?.enable();
     }
-
+    this.storeForm.get('storeId')?.setValue(this.data.element.storeId);
   }
 
 
