@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment.prod";
 import {Store} from "../../../feature/stores/store.interface";
-import {Product} from "../../../feature/products/product.interface";
+import {Product} from "../products/product.interface";
 
 
 @Injectable({

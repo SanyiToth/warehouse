@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import {Product} from "../../feature/products/product.interface";
+import {Product} from "../services/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
@@ -15,10 +15,12 @@ import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/c
 })
 export class ContextMenuComponent implements OnInit {
 
-  dialogRef!: MatDialogRef<ConfirmDialogComponent> | null;
-  @Input() element!:any;
+
+  @Input() element!: any;
   @Output() deletedElement = new EventEmitter<Product | Store>();
   isLoggedIn!: boolean;
+  dialogRef!: MatDialogRef<ConfirmDialogComponent> | null;
+  activatedRoutePath: string | undefined = this.route.routeConfig?.path;
 
   constructor(private auth: AuthService,
               private dialog: MatDialog,
@@ -31,18 +33,19 @@ export class ContextMenuComponent implements OnInit {
   }
 
   onDelete() {
-    console.log('element', this.element.name)
-    this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      disableClose: false
-    });
-    this.dialogRef.componentInstance.confirmMessage = `Are you sure you want to delete? `
+    console.log('element', this.element)
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.data = {
+      element: this.element
+    };
+    this.dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+
     this.dialogRef.afterClosed()
-      .subscribe(result => {
-      if (result) {
-        this.deletedElement.emit(this.element);
-      }
-      this.dialogRef = null;
-    });
+      .subscribe(resp => {
+        if (resp) this.deletedElement.emit(this.element);
+        this.dialogRef = null;
+      });
   }
 
 
@@ -56,7 +59,7 @@ export class ContextMenuComponent implements OnInit {
     dialogConfig.data = {
       element: this.element
     };
-    this.route.routeConfig?.path === 'products' ?
+    this.activatedRoutePath === 'products' ?
       this.dialog.open(ProductDialogComponent, dialogConfig) :
       this.dialog.open(StoreDialogComponent, dialogConfig);
   }
