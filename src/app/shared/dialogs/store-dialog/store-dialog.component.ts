@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -7,10 +7,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './store-dialog.component.html',
   styleUrls: ['./store-dialog.component.css']
 })
-export class StoreDialogComponent  {
+export class StoreDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   storeForm: FormGroup = this.fb.group({
@@ -21,9 +22,16 @@ export class StoreDialogComponent  {
   })
 
 
-
-
   onSubmit() {
 
   }
+
+  ngOnInit(): void {
+    if (!this.data) {
+      this.storeForm.get('storeId')?.enable();
+    }
+
+  }
+
+
 }
