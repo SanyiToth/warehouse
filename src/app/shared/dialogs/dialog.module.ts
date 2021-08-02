@@ -6,6 +6,7 @@ import {ProductDialogComponent} from './product-dialog/product-dialog.component'
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatInputModule} from "@angular/material/input";
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   exports: [StoreDialogComponent, ProductDialogComponent]
 })

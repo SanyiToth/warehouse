@@ -1,25 +1,29 @@
-<form [formGroup]="storeForm">
-  <p>
-    <mat-form-field>
-      <input type="text" autofocus matInput placeholder="Store ID" formControlName="storeId">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <input type="text" autofocus matInput placeholder="Address" formControlName="address">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <input type="number" autofocus matInput placeholder="Width" formControlName="width">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <input type="number" autofocus matInput placeholder="Length" formControlName="length">
-    </mat-form-field>
-  </p>
-
+<div mat-dialog-actions>
+  <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field>
+        <input type="text" autofocus matInput placeholder="Store ID" formControlName="storeId">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="text" autofocus matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="number" autofocus matInput placeholder="Width" formControlName="width">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="number" autofocus matInput placeholder="Length" formControlName="length">
+      </mat-form-field>
+    </p>
+  </form>
+</div>
+<div mat-dialog-actions>
   <button (click)="close()">Cancel</button>
-  <button type="submit" [disabled]="storeForm.invalid" >Save</button>
-</form>
+  <button type="submit" [disabled]="storeForm.invalid">Save</button>
+</div>
+

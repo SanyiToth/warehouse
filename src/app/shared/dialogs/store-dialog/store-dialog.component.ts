@@ -27,4 +27,7 @@ export class StoreDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+
+  }
 }

@@ -33,7 +33,7 @@ export class TableListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = false;
     dialogConfig.maxWidth = "60vw";
-    dialogConfig.width = '100%';
+    dialogConfig.width="auto";
     this.dialog.open(StoreDialogComponent, dialogConfig);
 
   }
