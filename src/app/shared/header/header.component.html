@@ -2,7 +2,7 @@
   <mat-nav-list fxLayout="row" *ngFor="let route of routes">
     <button mat-button [routerLink]="route.routerLink">{{route.path}}</button>
   </mat-nav-list>
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
 
   <div *ngIf="isLoggedIn; then logoutTpl else loginTpl"></div>
   <ng-template #loginTpl>
