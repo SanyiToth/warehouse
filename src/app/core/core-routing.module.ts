@@ -5,6 +5,7 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 import {ProductsContainerComponent} from "../feature/products/products-container/products-container.component";
 import {ProductsResolver} from "../shared/resolvers/products/products.resolver";
 import {StoresResolver} from "../shared/resolvers/stores/stores.resolver";
+import {StoresContainerComponent} from "../feature/stores/stores-container/stores-container.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: '/products', pathMatch: 'full' },
@@ -12,7 +13,9 @@ const routes: Routes = [
   {
     path: 'stores',
     resolve: {stores: StoresResolver},
-    loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)
+  /*  loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)*/
+
+    component: StoresContainerComponent
   },
   {path: 'login', loadChildren: () => import('../feature/login/login.module').then(m => m.LoginModule)},
   {path: '404', component: NotFoundComponent},

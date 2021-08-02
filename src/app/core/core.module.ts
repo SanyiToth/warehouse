@@ -12,6 +12,7 @@ import {AuthModule} from "../shared/auth/auth.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
+import {StoresModule} from "../feature/stores/stores.module";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     FlexLayoutModule,
     CoreRoutingModule,
     HeaderModule,
-    ProductsModule
+    ProductsModule,
+    StoresModule
   ],
   exports: [
     CoreComponent

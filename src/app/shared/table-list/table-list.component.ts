@@ -4,6 +4,8 @@ import {Product} from "../../feature/products/product.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
+import {ActivatedRoute} from "@angular/router";
+import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
 
 
 @Component({
@@ -19,12 +21,14 @@ export class TableListComponent implements OnInit {
   isLoggedIn!: boolean;
 
   constructor(private auth: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.isLoggedIn = this.auth.isLoggedIn();
     this.displayedColumns = [...Object.keys(this.data[0]), "actions"];
+
   }
 
   onAddNew() {
@@ -33,9 +37,10 @@ export class TableListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = false;
     dialogConfig.maxWidth = "60vw";
-    dialogConfig.width="auto";
-    this.dialog.open(StoreDialogComponent, dialogConfig);
-
+    dialogConfig.width = "auto";
+    this.route.routeConfig?.path === 'products' ?
+      this.dialog.open(ProductDialogComponent, dialogConfig) :
+      this.dialog.open(StoreDialogComponent, dialogConfig);
   }
 
   getDeletedElement($event: any) {
