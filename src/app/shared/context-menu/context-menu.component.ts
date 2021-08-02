@@ -2,6 +2,8 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Product} from "../../feature/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog/dialog.component";
 
 @Component({
   selector: 'app-context-menu',
@@ -13,7 +15,8 @@ export class ContextMenuComponent implements OnInit {
   @Output() deletedElement = new EventEmitter<Product | Store>();
   isLoggedIn!: boolean;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService,
+              private dialog: MatDialog) {
   }
 
 
@@ -23,5 +26,18 @@ export class ContextMenuComponent implements OnInit {
 
   onDelete() {
     this.deletedElement.emit(this.element);
+  }
+
+  onEdit() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = false;
+    dialogConfig.maxWidth = "60vw";
+    dialogConfig.width = '100%';
+    dialogConfig.data = {
+      element: this.element
+    };
+    this.dialog.open(DialogComponent, dialogConfig);
   }
 }
