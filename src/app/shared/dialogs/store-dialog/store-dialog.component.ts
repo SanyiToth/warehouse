@@ -10,6 +10,7 @@ import {NotificationService} from "../../services/notification/notification.serv
   styleUrls: ['./store-dialog.component.css']
 })
 export class StoreDialogComponent implements OnInit {
+  id!: number;
 
   constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
               private fb: FormBuilder,
@@ -17,6 +18,7 @@ export class StoreDialogComponent implements OnInit {
               private storesService: StoresService,
               private notification: NotificationService) {
   }
+
 
   storeForm: FormGroup = this.fb.group({
     storeId: [{value: null, disabled: true}, [Validators.required]],
@@ -27,19 +29,27 @@ export class StoreDialogComponent implements OnInit {
 
 
   onSubmit() {
-    if (this.storeForm.valid)
-      this.storesService.postStore(this.storeForm.value)
-        .subscribe(resp => {
-          this.notification.open('You saved successfully!');
-          this.dialogRef.close()
-        }, error => {
-          this.notification.open('Something went wrong. Try again later!');
-        })
+    /* if (this.storeForm.valid)
+       this.storesService.postStore(this.storeForm.value)
+         .subscribe(resp => {
+           this.notification.open('You saved successfully!');
+           this.dialogRef.close()
+         }, error => {
+           this.notification.open('Something went wrong. Try again later!');
+         })*/
 
+        this.storesService.patchStore(this.storeForm.value,this.id)
+          .subscribe(resp => {
+            this.notification.open('You saved successfully!');
+            this.dialogRef.close()
+          }, error => {
+            this.notification.open('Something went wrong. Try again later!');
+          })
 
   }
 
   ngOnInit(): void {
+    this.id = this.data.element.id;
     if (!this.data) {
       this.storeForm.get('storeId')?.enable();
     }
