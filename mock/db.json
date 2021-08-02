@@ -50,22 +50,29 @@
       "id": 2,
       "storeId": "xyz26",
       "address": "lorem ipsum 33",
-      "weight": 35,
+      "width": 35,
       "length": 45
     },
     {
       "id": 5,
       "storeId": "xyz29",
       "address": "lorem ipsum 33",
-      "weight": 35,
+      "width": 35,
       "length": 45
     },
     {
       "id": 6,
       "storeId": "xyz30",
       "address": "lorem ipsum 33",
-      "weight": 35,
+      "width": 35,
       "length": 45
+    },
+    {
+      "storeId": "fsdfsdf",
+      "address": "sdfsdfsdf",
+      "width": 4,
+      "length": 4,
+      "id": 7
     }
   ]
 }

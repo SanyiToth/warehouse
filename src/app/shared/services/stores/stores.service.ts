@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment.prod";
 import {Store} from "../../../feature/stores/store.interface";
-import {Product} from "../products/product.interface";
 
 
 @Injectable({
@@ -20,7 +19,15 @@ export class StoresService {
     return this.http.get<Store[]>(environment.API_URL + StoresService.PATH);
   }
 
-  deleteStore(id: number | undefined): Observable<Product[]> {
-    return this.http.delete<Product[]>(environment.API_URL + StoresService.PATH + `/${id}`);
+  deleteStore(id: number | undefined): Observable<Store[]> {
+    return this.http.delete<Store[]>(environment.API_URL + StoresService.PATH + `/${id}`);
+  }
+
+  postStore(store: Store): Observable<Store> {
+    return this.http.post<Store>(environment.API_URL + StoresService.PATH, store);
+  }
+
+  patchStore(store: Store, id: number): Observable<Store> {
+    return this.http.post<Store>(environment.API_URL + StoresService.PATH + `/${id}`, store);
   }
 }
