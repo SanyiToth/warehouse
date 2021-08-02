@@ -4,6 +4,8 @@ import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
+import {ActivatedRoute} from "@angular/router";
+import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
 
 @Component({
   selector: 'app-context-menu',
@@ -16,7 +18,8 @@ export class ContextMenuComponent implements OnInit {
   isLoggedIn!: boolean;
 
   constructor(private auth: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private route: ActivatedRoute) {
   }
 
 
@@ -38,6 +41,9 @@ export class ContextMenuComponent implements OnInit {
     dialogConfig.data = {
       element: this.element
     };
-    this.dialog.open(StoreDialogComponent, dialogConfig);
+    this.route.routeConfig?.path === 'products' ?
+      this.dialog.open(ProductDialogComponent, dialogConfig) :
+      this.dialog.open(StoreDialogComponent, dialogConfig);
   }
+
 }
