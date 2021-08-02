@@ -1,6 +1,7 @@
 {
   "users": [
     {
+      "name": "John Smith",
       "email": "admin@gmail.com",
       "password": "$2a$10$THm3hiviprYn/M52BE.BsuvgBV1Ghi/7vfd6Oz.Pna32exvMoxh.q",
       "id": 1

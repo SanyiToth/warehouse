@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {AccessToken, LoginCredential} from './auth.interface';
+import {LoginCredential, LoginResponse} from './auth.interface';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -27,12 +27,13 @@ export class AuthService {
     this.jwtSubject = new BehaviorSubject<string|null>(jwtToken);
   }
 
-  login(credentials: LoginCredential): Observable<AccessToken> {
+  login(credentials: LoginCredential): Observable<LoginResponse > {
     return this.http
-      .post<AccessToken>(environment.API_URL + AuthService.PATH, credentials)
+      .post<LoginResponse >(environment.API_URL + AuthService.PATH, credentials)
       .pipe(
         tap(token => {
           localStorage.setItem(AuthService.JWT_STORAGE_KEY,token.accessToken);
+          localStorage.setItem('loggedInUser', JSON.stringify(token.loggedInUser));
           this.jwtSubject.next(token.accessToken);
         })
       );
@@ -40,6 +41,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(AuthService.JWT_STORAGE_KEY);
+    localStorage.removeItem('loggedInUser');
     setTimeout(() => {
       this.router.navigate(['/login']);
     }, 1000);
