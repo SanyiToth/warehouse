@@ -7,7 +7,8 @@ import {ProductsResolver} from "../shared/resolvers/products/products.resolver";
 import {StoresResolver} from "../shared/resolvers/stores/stores.resolver";
 
 const routes: Routes = [
-  {path: '', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
+  { path: '',   redirectTo: '/products', pathMatch: 'full' },
+  {path: 'products', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
   {
     path: 'stores',
     resolve: {stores: StoresResolver},
