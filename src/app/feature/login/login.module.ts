@@ -7,6 +7,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import { LoginRoutingModule } from './login-routing.module';
+import {HeaderModule} from "../../shared/header/header.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginRoutingModule } from './login-routing.module';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    HeaderModule
   ]
   , exports: [LoginComponent]
 })

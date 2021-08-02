@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../shared/auth/auth.service";
+import {NotificationService} from "../../shared/services/notification/notification.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -8,7 +11,10 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private authService:AuthService,
+           /*   private notifications:NotificationService,*/
+              private router:Router) {
   }
 
   loginForm: FormGroup = this.fb.group({
@@ -20,18 +26,18 @@ export class LoginComponent implements OnInit {
   submit() {
     if (this.loginForm.valid) {
       this.formValueToHeader.emit(this.loginForm.value);
-      /*  this.authService
+        this.authService
           .login(this.loginForm.value)
           .subscribe(
             (user) => {
-              this.notifications.open("Successful login!");
+         /*     this.notifications.open("Successful login!");*/
               setTimeout(() => {
                 this.router.navigate([""]);
               }, 2000);
             },
             error => {
-              this.notifications.open(error);
-            });*/
+           /*   this.notifications.open(error);*/
+            });
       this.loginForm.reset();
     }
   }

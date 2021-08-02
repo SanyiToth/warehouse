@@ -32,7 +32,6 @@ export class AuthService {
       .post<LoginResponse >(environment.API_URL + AuthService.PATH, credentials)
       .pipe(
         tap(token => {
-          console.log('token',token.user)
           localStorage.setItem(AuthService.JWT_STORAGE_KEY,token.accessToken);
           localStorage.setItem('loggedInUser', JSON.stringify(token.user));
           this.jwtSubject.next(token.accessToken);

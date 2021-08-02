@@ -4,6 +4,7 @@ import { StoresContainerComponent } from './stores-container/stores-container.co
 import { StoresRoutingModule } from './stores-routing.module';
 import {MatTableModule} from "@angular/material/table";
 import {TableListModule} from "../../shared/table-list/table-list.module";
+import {HeaderModule} from "../../shared/header/header.module";
 
 
 
@@ -11,11 +12,12 @@ import {TableListModule} from "../../shared/table-list/table-list.module";
   declarations: [
     StoresContainerComponent,
   ],
-  imports: [
-    CommonModule,
-    StoresRoutingModule,
-    MatTableModule,
-    TableListModule
-  ]
+    imports: [
+        CommonModule,
+        StoresRoutingModule,
+        MatTableModule,
+        TableListModule,
+        HeaderModule
+    ]
 })
 export class StoresModule { }
