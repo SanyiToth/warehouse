@@ -33,14 +33,12 @@ export class ContextMenuComponent implements OnInit {
   }
 
   onDelete() {
-    console.log('element', this.element)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = {
       element: this.element
     };
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
-
     this.dialogRef.afterClosed()
       .subscribe(resp => {
         if (resp) this.deletedElement.emit(this.element);
