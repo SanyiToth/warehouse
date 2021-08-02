@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "../../feature/stores/store.interface";
 import {Product} from "../../feature/products/product.interface";
 import {AuthService} from "../auth/auth.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog/dialog.component";
 
 
 @Component({
@@ -16,7 +18,8 @@ export class TableListComponent implements OnInit {
   deletedElement!: Product | Store;
   isLoggedIn!: boolean;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -25,6 +28,13 @@ export class TableListComponent implements OnInit {
   }
 
   onAddNew() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = false;
+    dialogConfig.maxWidth = "60vw";
+    dialogConfig.width = '100%';
+    this.dialog.open(DialogComponent, dialogConfig);
 
   }
 

@@ -10,6 +10,7 @@ import {ProductsModule} from "../feature/products/products.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthModule} from "../shared/auth/auth.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     CommonModule,
     AuthModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatSnackBarModule,
     HttpClientModule,
     FlexLayoutModule,
