@@ -7,7 +7,7 @@ import {User} from "../../auth/auth.interface";
 })
 export class CurrentUserService {
 
-  getLoggedInProvider(): User {
-    return <User>JSON.parse(<string>localStorage.getItem('loggedInProvider'));
+  getLoggedInUser(): User {
+    return <User>JSON.parse(<string>localStorage.getItem('loggedInUser'));
   }
 }

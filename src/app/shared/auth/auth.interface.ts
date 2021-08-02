@@ -3,11 +3,9 @@ export interface LoginCredential {
   password: string;
 }
 
-
-
 export interface LoginResponse {
   accessToken: string;
-  loggedInUser: User;
+  user: User;
 }
 
 export interface User {
