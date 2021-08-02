@@ -6,18 +6,21 @@ import {ProductsContainerComponent} from "../feature/products/products-container
 import {ProductsResolver} from "../shared/resolvers/products/products.resolver";
 import {StoresResolver} from "../shared/resolvers/stores/stores.resolver";
 import {StoresContainerComponent} from "../feature/stores/stores-container/stores-container.component";
+import {AuthGuard} from "../shared/auth/auth.guard";
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/products', pathMatch: 'full' },
+  {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: 'products', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
   {
     path: 'stores',
     resolve: {stores: StoresResolver},
-  /*  loadChildren: () => import('../feature/stores/stores.module').then(m => m.StoresModule)*/
-
     component: StoresContainerComponent
   },
-  {path: 'login', loadChildren: () => import('../feature/login/login.module').then(m => m.LoginModule)},
+  {
+    path: 'login',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('../feature/login/login.module').then(m => m.LoginModule)
+  },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '404'}
 ]
