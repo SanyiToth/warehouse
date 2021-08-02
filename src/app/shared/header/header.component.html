@@ -6,13 +6,13 @@
 
   <div *ngIf="isLoggedIn; then logoutTpl else loginTpl"></div>
   <ng-template #loginTpl>
-    <button mat-button routerLink="/login">
+    <button mat-stroked-button routerLink="/login">
       Login
     </button>
   </ng-template>
   <ng-template #logoutTpl>
     <span>{{loggedInUser?.name}}</span>
-    <button mat-button (click)="onLogOut()">
+    <button mat-stroked-button (click)="onLogOut()">
       Logout
     </button>
   </ng-template>
