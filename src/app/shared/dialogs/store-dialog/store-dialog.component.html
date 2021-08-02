@@ -1,5 +1,25 @@
-<p>dialog works!</p>
+<form [formGroup]="storeForm">
+  <p>
+    <mat-form-field>
+      <input type="text" autofocus matInput placeholder="Store ID" formControlName="storeId">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" autofocus matInput placeholder="Address" formControlName="address">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="number" autofocus matInput placeholder="Width" formControlName="width">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="number" autofocus matInput placeholder="Length" formControlName="length">
+    </mat-form-field>
+  </p>
 
-<button>Save</button>
-
-<button (click)="close()">Cancel</button>
+  <button (click)="close()">Cancel</button>
+  <button type="submit" [disabled]="storeForm.invalid" >Save</button>
+</form>

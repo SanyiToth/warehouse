@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthModule} from "../shared/auth/auth.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     AuthModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    ReactiveFormsModule,
     MatSnackBarModule,
     HttpClientModule,
     FlexLayoutModule,
