@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService:AuthService,
-           /*   private notifications:NotificationService,*/
+             private notifications:NotificationService,
               private router:Router) {
   }
 
@@ -30,13 +30,13 @@ export class LoginComponent implements OnInit {
           .login(this.loginForm.value)
           .subscribe(
             (user) => {
-         /*     this.notifications.open("Successful login!");*/
+           this.notifications.open("Successful login!");
               setTimeout(() => {
                 this.router.navigate([""]);
               }, 2000);
             },
             error => {
-           /*   this.notifications.open(error);*/
+            this.notifications.open("Something went wrong! Try again!");
             });
       this.loginForm.reset();
     }

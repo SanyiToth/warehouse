@@ -12,8 +12,8 @@ export class NotificationService {
   panelClass: string[];
 
   constructor(private snackBar: MatSnackBar) {
-    this.horizontalPosition = 'right';
-    this.verticalPosition = 'top';
+    this.horizontalPosition = 'center';
+    this.verticalPosition = 'bottom';
     this.duration = 5000;
     this.panelClass = ['mat-toolbar', 'mat-primary'];
   }

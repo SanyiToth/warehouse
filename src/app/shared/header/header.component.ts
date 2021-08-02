@@ -3,6 +3,7 @@ import {CurrentUserService} from "../services/current-user/current-user.service"
 import {User} from "../auth/auth.interface";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
+import {NotificationService} from "../services/notification/notification.service";
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private currentUser: CurrentUserService,
               private authService: AuthService,
+              private notification: NotificationService,
               private router: Router) {
 
   }
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogOut() {
+    this.notification.open("You've been logged out!");
     setTimeout(() => {
       this.authService.logout();
       this.authorization();

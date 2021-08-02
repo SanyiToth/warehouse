@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ProductsModule} from "../feature/products/products.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthModule} from "../shared/auth/auth.module";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {AuthModule} from "../shared/auth/auth.module";
     CommonModule,
     AuthModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     HttpClientModule,
     FlexLayoutModule,
     CoreRoutingModule,
