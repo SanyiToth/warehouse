@@ -11,6 +11,7 @@
     </button>
   </ng-template>
   <ng-template #logoutTpl>
+    <span>{{loggedInUser?.name}}</span>
     <button mat-button (click)="onLogOut()">
       Logout
     </button>
