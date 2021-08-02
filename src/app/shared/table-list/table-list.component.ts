@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "../../feature/stores/store.interface";
 import {Product} from "../../feature/products/product.interface";
+import {AuthService} from "../auth/auth.service";
 
 
 @Component({
@@ -13,11 +14,13 @@ export class TableListComponent implements OnInit {
   @Output() deletedElementToParent = new EventEmitter<Product | Store>();
   displayedColumns!: string[];
   deletedElement!: Product | Store;
+  isLoggedIn!: boolean;
 
-  constructor() {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.auth.isLoggedIn();
     this.displayedColumns = [...Object.keys(this.data[0]), "actions"];
   }
 
