@@ -3,12 +3,12 @@ import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  templateUrl: './store-dialog.component.html',
+  styleUrls: ['./store-dialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class StoreDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<DialogComponent>) {
+  constructor(private dialogRef: MatDialogRef<StoreDialogComponent>) {
   }
 
   close() {

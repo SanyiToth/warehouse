@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DialogComponent} from "./dialog/dialog.component";
+import {StoreDialogComponent} from "./store-dialog/store-dialog.component";
 import {MatButtonModule} from "@angular/material/button";
 
 
 
 @NgModule({
-  declarations: [DialogComponent],
+  declarations: [StoreDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,

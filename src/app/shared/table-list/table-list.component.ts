@@ -3,7 +3,7 @@ import {Store} from "../../feature/stores/store.interface";
 import {Product} from "../../feature/products/product.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {DialogComponent} from "../dialog/dialog/dialog.component";
+import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 
 
 @Component({
@@ -34,7 +34,7 @@ export class TableListComponent implements OnInit {
     dialogConfig.hasBackdrop = false;
     dialogConfig.maxWidth = "60vw";
     dialogConfig.width = '100%';
-    this.dialog.open(DialogComponent, dialogConfig);
+    this.dialog.open(StoreDialogComponent, dialogConfig);
 
   }
 

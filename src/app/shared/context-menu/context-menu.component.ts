@@ -3,7 +3,7 @@ import {Product} from "../../feature/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {DialogComponent} from "../dialog/dialog/dialog.component";
+import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 
 @Component({
   selector: 'app-context-menu',
@@ -38,6 +38,6 @@ export class ContextMenuComponent implements OnInit {
     dialogConfig.data = {
       element: this.element
     };
-    this.dialog.open(DialogComponent, dialogConfig);
+    this.dialog.open(StoreDialogComponent, dialogConfig);
   }
 }
