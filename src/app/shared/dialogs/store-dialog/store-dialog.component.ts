@@ -7,9 +7,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './store-dialog.component.html',
   styleUrls: ['./store-dialog.component.css']
 })
-export class StoreDialogComponent implements OnInit {
+export class StoreDialogComponent  {
 
-  constructor(private dialogRef: MatDialogRef<StoreDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
               private fb: FormBuilder) {
   }
 
@@ -20,12 +20,8 @@ export class StoreDialogComponent implements OnInit {
     length: [null, [Validators.required, Validators.min(1), Validators.max(5)]]
   })
 
-  close() {
-    this.dialogRef.close();
-  }
 
-  ngOnInit(): void {
-  }
+
 
   onSubmit() {
 

@@ -7,9 +7,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './product-dialog.component.html',
   styleUrls: ['./product-dialog.component.css']
 })
-export class ProductDialogComponent implements OnInit {
+export class ProductDialogComponent {
 
-  constructor(private dialogRef: MatDialogRef<ProductDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<ProductDialogComponent>,
               private fb: FormBuilder) {
   }
 
@@ -19,12 +19,7 @@ export class ProductDialogComponent implements OnInit {
     length: [null, [Validators.required, Validators.min(1), Validators.max(5)]]
   })
 
-  close() {
-    this.dialogRef.close();
-  }
 
-  ngOnInit(): void {
-  }
 
   onSubmit() {
 

@@ -7,10 +7,11 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
-  declarations: [StoreDialogComponent, ProductDialogComponent],
+  declarations: [StoreDialogComponent, ProductDialogComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,

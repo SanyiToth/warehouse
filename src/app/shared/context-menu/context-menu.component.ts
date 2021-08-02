@@ -2,10 +2,11 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Product} from "../../feature/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
+import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-context-menu',
@@ -13,7 +14,9 @@ import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.c
   styleUrls: ['./context-menu.component.css']
 })
 export class ContextMenuComponent implements OnInit {
-  @Input() element!: Product | Store;
+
+  dialogRef!: MatDialogRef<ConfirmDialogComponent> | null;
+  @Input() element!:any;
   @Output() deletedElement = new EventEmitter<Product | Store>();
   isLoggedIn!: boolean;
 
@@ -28,8 +31,20 @@ export class ContextMenuComponent implements OnInit {
   }
 
   onDelete() {
-    this.deletedElement.emit(this.element);
+    console.log('element', this.element.name)
+    this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = `Are you sure you want to delete? `
+    this.dialogRef.afterClosed()
+      .subscribe(result => {
+      if (result) {
+        this.deletedElement.emit(this.element);
+      }
+      this.dialogRef = null;
+    });
   }
+
 
   onEdit() {
     const dialogConfig = new MatDialogConfig();
