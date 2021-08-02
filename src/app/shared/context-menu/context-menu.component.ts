@@ -34,7 +34,7 @@ export class ContextMenuComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = false;
     dialogConfig.maxWidth = "60vw";
-    dialogConfig.width = '100%';
+    dialogConfig.width = 'auto';
     dialogConfig.data = {
       element: this.element
     };

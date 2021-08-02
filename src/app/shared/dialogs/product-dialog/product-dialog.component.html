@@ -1,1 +1,23 @@
-<p>product-dialog works!</p>
+<div mat-dialog-actions>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field>
+        <input type="text" autofocus matInput placeholder="Address" formControlName="name">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="number" autofocus matInput placeholder="Width" formControlName="width">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="number" autofocus matInput placeholder="Length" formControlName="length">
+      </mat-form-field>
+    </p>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button (click)="close()">Cancel</button>
+  <button type="submit" [disabled]="productForm.invalid">Save</button>
+</div>
