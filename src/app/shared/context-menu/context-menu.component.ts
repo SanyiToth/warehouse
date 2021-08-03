@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import {Product} from "../services/products/product.interface";
+import {Product} from "../../feature/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StoresService} from "../../../shared/services/stores/stores.service";
 import {Store} from "../store.interface";
 import {ActivatedRoute} from "@angular/router";
-import {Product} from "../../../shared/services/products/product.interface";
+import {Product} from "../../products/product.interface";
 import {switchMap} from "rxjs/operators";
 
 @Component({

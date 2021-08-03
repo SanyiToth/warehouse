@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "../store.interface";
-import {Product} from "../../../shared/services/products/product.interface";
+import {Product} from "../../products/product.interface";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
