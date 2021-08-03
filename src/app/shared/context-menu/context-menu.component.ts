@@ -5,7 +5,7 @@ import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
-import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
+import {ProductDialogComponent} from "../../feature/products/product-dialog/product-dialog.component";
 import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component";
 import {NotificationService} from "../services/notification/notification.service";
 

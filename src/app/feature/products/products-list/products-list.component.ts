@@ -1,23 +1,21 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Store} from "../../feature/stores/store.interface";
-import {Product} from "../services/products/product.interface";
-import {AuthService} from "../auth/auth.service";
+import {Product} from "../../../shared/services/products/product.interface";
+import {Store} from "../../stores/store.interface";
+import {AuthService} from "../../../shared/auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
-import {ProductDialogComponent} from "../../feature/products/product-dialog/product-dialog.component";
-
+import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
+import {StoreDialogComponent} from "../../../shared/dialogs/store-dialog/store-dialog.component";
 
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-products-table',
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.css']
 })
-export class TableListComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
 
-
-  @Input() data!: any;
-  @Output() deletedElementToParent = new EventEmitter<Product | Store>();
+  @Input() products!: any;
+  @Output() DataToParent = new EventEmitter();
   displayedColumns!: string[];
   deletedElement!: Product | Store;
   isLoggedIn!: boolean;
@@ -29,7 +27,7 @@ export class TableListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.displayedColumns = [...Object.keys(this.data[0]), "actions"];
+    this.displayedColumns = ["name", "width", "length", "date", "actions",];
 
   }
 
@@ -40,7 +38,6 @@ export class TableListComponent implements OnInit {
       this.dialog.open(ProductDialogComponent, dialogConfig);
       this.dialog.afterAllClosed.subscribe(resp => {
 
-
         }
       )
     } else {
@@ -50,6 +47,6 @@ export class TableListComponent implements OnInit {
 
   getDeletedElement($event: any) {
     this.deletedElement = $event;
-    this.deletedElementToParent.emit(this.deletedElement);
+    this.DataToParent.emit(this.deletedElement);
   }
 }
