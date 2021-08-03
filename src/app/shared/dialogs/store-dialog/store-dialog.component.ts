@@ -49,4 +49,7 @@ export class StoreDialogComponent implements OnInit {
     return this.storeForm.get('length');
   }
 
+  onSubmit() {
+    this.dialogRef.close(this.storeForm.value);
+  }
 }

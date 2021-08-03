@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-  <form [formGroup]="storeForm">
+  <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field *ngIf="storeId?.value">
         <input type="text" autofocus matInput placeholder="Store ID" formControlName="storeId">
@@ -20,8 +20,8 @@
         <input type="number" min="1" max="5" autofocus matInput placeholder="Length" formControlName="length">
       </mat-form-field>
     </p>
-    <button mat-button  (click)="dialogRef.close(storeForm.value)">Save</button>
-    <button mat-button  (click)="dialogRef.close(false)">Cancel</button>
+    <button mat-button type="submit">Save</button>
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
   </form>
 </div>
 
