@@ -47,13 +47,6 @@
   ],
   "stores": [
     {
-      "id": 2,
-      "storeId": "xyz26",
-      "address": null,
-      "width": null,
-      "length": null
-    },
-    {
       "id": 5,
       "storeId": "xyz29",
       "address": "lorem ipsum 33",

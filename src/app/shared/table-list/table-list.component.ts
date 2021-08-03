@@ -34,13 +34,9 @@ export class TableListComponent implements OnInit {
   onAddNew() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.hasBackdrop = false;
-    dialogConfig.maxWidth = "60vw";
-    dialogConfig.width = "auto";
-    this.route.routeConfig?.path === 'products' ?
-      this.dialog.open(ProductDialogComponent, dialogConfig) :
-      this.dialog.open(StoreDialogComponent, dialogConfig);
+     this.route.routeConfig?.path === 'products' ?
+        this.dialog.open(ProductDialogComponent, dialogConfig) :
+        this.dialog.open(StoreDialogComponent, dialogConfig);
   }
 
   getDeletedElement($event: any) {
