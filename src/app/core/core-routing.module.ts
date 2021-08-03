@@ -10,7 +10,9 @@ import {AuthGuard} from "../shared/auth/auth.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: 'products', resolve: {products: ProductsResolver}, component: ProductsContainerComponent},
+  {path: 'products',
+    resolve: {products: ProductsResolver},
+    component: ProductsContainerComponent},
   {
     path: 'stores',
     resolve: {stores: StoresResolver},
