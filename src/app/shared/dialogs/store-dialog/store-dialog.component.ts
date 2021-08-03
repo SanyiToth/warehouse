@@ -1,8 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {StoresService} from "../../services/stores/stores.service";
-import {NotificationService} from "../../services/notification/notification.service";
 
 @Component({
   selector: 'app-dialog',
@@ -10,13 +8,11 @@ import {NotificationService} from "../../services/notification/notification.serv
   styleUrls: ['./store-dialog.component.css']
 })
 export class StoreDialogComponent implements OnInit {
-  id!: number;
+  updatedStoreForm!: any;
 
   constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
               private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private storesService: StoresService,
-              private notification: NotificationService) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
 
@@ -29,32 +25,11 @@ export class StoreDialogComponent implements OnInit {
 
 
   onSubmit() {
-
-    if (this.data) {
-      this.storesService.patchStore(this.storeForm.value, this.id)
-        .subscribe(resp => {
-          this.notification.open('You saved successfully!');
-          this.dialogRef.close()
-        }, error => {
-          this.notification.open('Something went wrong. Try again later!');
-        })
-    } else {
-      this.storesService.postStore(this.storeForm.value)
-        .subscribe(resp => {
-          this.notification.open('You saved successfully!');
-          this.dialogRef.close()
-        }, error => {
-          this.notification.open('Something went wrong. Try again later!');
-        })
-    }
+    this.updatedStoreForm = this.storeForm.value;
+    this.updatedStoreForm.storeId = this.storeForm.get('storeId')?.value;
   }
 
   ngOnInit(): void {
-    if (!this.data) {
-      this.id = this.data?.element?.id;
-
-      this.storeForm.get('storeId')?.enable();
-    }
     this.storeForm.get('storeId')?.setValue(this.data.element.storeId);
   }
 

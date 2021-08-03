@@ -49,9 +49,9 @@
     {
       "id": 2,
       "storeId": "xyz26",
-      "address": "lorem ipsum 33",
-      "width": 35,
-      "length": 45
+      "address": null,
+      "width": null,
+      "length": null
     },
     {
       "id": 5,

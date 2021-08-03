@@ -20,10 +20,14 @@
         <input type="number" autofocus matInput placeholder="Length" formControlName="length">
       </mat-form-field>
     </p>
-
-    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
-    <button mat-button type="submit" [disabled]="storeForm.invalid">Save</button>
+    <button mat-button type="submit" (click)="dialogRef.close(storeForm.value)">Save</button>
+    <button mat-button type="button" (click)="dialogRef.close(false)">Cancel</button>
   </form>
+<!--  <div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close(false)">Cancel</button>
+    <button mat-button type="submit" [disabled]="storeForm.invalid">Save</button>
+  </div>-->
 </div>
+
 
 
