@@ -1,7 +1,7 @@
 <div mat-dialog-content>
-  <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="storeForm">
     <p>
-      <mat-form-field>
+      <mat-form-field *ngIf="storeId?.value">
         <input type="text" autofocus matInput placeholder="Store ID" formControlName="storeId">
       </mat-form-field>
     </p>
@@ -12,21 +12,17 @@
     </p>
     <p>
       <mat-form-field>
-        <input type="number" autofocus matInput placeholder="Width" formControlName="width">
+        <input type="number" min="1" max="5" autofocus matInput placeholder="Width" formControlName="width">
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
-        <input type="number" autofocus matInput placeholder="Length" formControlName="length">
+        <input type="number" min="1" max="5" autofocus matInput placeholder="Length" formControlName="length">
       </mat-form-field>
     </p>
-    <button mat-button type="submit" (click)="dialogRef.close(storeForm.value)">Save</button>
-    <button mat-button type="button" (click)="dialogRef.close(false)">Cancel</button>
+    <button mat-button  (click)="dialogRef.close(storeForm.value)">Save</button>
+    <button mat-button  (click)="dialogRef.close(false)">Cancel</button>
   </form>
-<!--  <div mat-dialog-actions>
-    <button mat-button (click)="dialogRef.close(false)">Cancel</button>
-    <button mat-button type="submit" [disabled]="storeForm.invalid">Save</button>
-  </div>-->
 </div>
 
 

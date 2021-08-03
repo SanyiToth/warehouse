@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-dialog',
@@ -8,7 +8,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./store-dialog.component.css']
 })
 export class StoreDialogComponent implements OnInit {
-  updatedStoreForm!: any;
 
   constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
               private fb: FormBuilder,
@@ -24,14 +23,14 @@ export class StoreDialogComponent implements OnInit {
   })
 
 
-  onSubmit() {
-    this.updatedStoreForm = this.storeForm.value;
-    this.updatedStoreForm.storeId = this.storeForm.get('storeId')?.value;
-  }
-
   ngOnInit(): void {
-    this.storeForm.get('storeId')?.setValue(this.data.element.storeId);
+    if (this.data) {
+      this.storeId?.setValue(this.data.element.storeId);
+    }
   }
 
+  get storeId(): AbstractControl | null {
+    return this.storeForm.get('storeId');
+  }
 
 }

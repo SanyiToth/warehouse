@@ -7,6 +7,7 @@ import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.compone
 import {ActivatedRoute} from "@angular/router";
 import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
 import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component";
+import {NotificationService} from "../services/notification/notification.service";
 
 @Component({
   selector: 'app-context-menu',
@@ -14,14 +15,18 @@ import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/c
   styleUrls: ['./context-menu.component.css']
 })
 export class ContextMenuComponent implements OnInit {
+
   dialogRefConfirm!: MatDialogRef<ConfirmDialogComponent> | null;
   dialogRefStore!: MatDialogRef<StoreDialogComponent> | null;
+  dialogRefProduct!: MatDialogRef<ProductDialogComponent> | null;
 
   @Input() element!: any;
   @Output() deletedElement = new EventEmitter<Product | Store>();
+
   isLoggedIn!: boolean;
 
   activatedRoutePath: string | undefined = this.route.routeConfig?.path;
+
 
   constructor(private auth: AuthService,
               private dialog: MatDialog,
@@ -42,7 +47,6 @@ export class ContextMenuComponent implements OnInit {
     this.dialogRefConfirm = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     this.dialogRefConfirm.afterClosed()
       .subscribe(resp => {
-        console.log('respConfirm', resp)
         if (resp) this.deletedElement.emit(this.element);
         this.dialogRefConfirm = null;
       });
@@ -56,17 +60,16 @@ export class ContextMenuComponent implements OnInit {
       element: this.element
     };
     if (this.activatedRoutePath === 'products') {
-      this.dialogRefStore = this.dialog.open(StoreDialogComponent, dialogConfig);
-      this.dialogRefStore.afterClosed()
+      this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
+      this.dialogRefProduct.afterClosed()
         .subscribe(resp => {
-          console.log('response', resp);
-          this.dialogRefStore = null;
+          this.dialogRefProduct = null;
         });
     } else {
       this.dialogRefStore = this.dialog.open(StoreDialogComponent, dialogConfig);
       this.dialogRefStore.afterClosed()
         .subscribe(resp => {
-          console.log('response', resp);
+          console.log('response in parent', resp);
           this.dialogRefStore = null;
         });
     }
