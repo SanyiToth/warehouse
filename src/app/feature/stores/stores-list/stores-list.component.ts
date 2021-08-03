@@ -1,19 +1,19 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Store} from "../../feature/stores/store.interface";
-import {Product} from "../services/products/product.interface";
-import {AuthService} from "../auth/auth.service";
+import {Store} from "../store.interface";
+import {Product} from "../../../shared/services/products/product.interface";
+import {AuthService} from "../../../shared/auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
+import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
-import {ProductDialogComponent} from "../../feature/products/product-dialog/product-dialog.component";
+import {ProductDialogComponent} from "../../products/product-dialog/product-dialog.component";
 
 
 @Component({
   selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  templateUrl: './stores-list.component.html',
+  styleUrls: ['./stores-list.component.css']
 })
-export class TableListComponent implements OnInit {
+export class StoresListComponent implements OnInit {
 
 
   @Input() data!: any;

@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TableListComponent} from './table-list.component';
+import {StoresListComponent} from './stores-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {ContextMenuModule} from "../context-menu/context-menu.module";
+import {ContextMenuModule} from "../../../shared/context-menu/context-menu.module";
 
 
 @NgModule({
   declarations: [
-    TableListComponent
+    StoresListComponent
   ],
 
   imports: [
@@ -20,8 +20,8 @@ import {ContextMenuModule} from "../context-menu/context-menu.module";
     ContextMenuModule
   ],
   exports: [
-    TableListComponent
+    StoresListComponent
   ],
 })
-export class TableListModule {
+export class StoresListModule {
 }

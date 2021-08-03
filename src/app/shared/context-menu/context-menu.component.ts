@@ -3,10 +3,10 @@ import {Product} from "../services/products/product.interface";
 import {Store} from "../../feature/stores/store.interface";
 import {AuthService} from "../auth/auth.service";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
+import {StoreDialogComponent} from "../../feature/stores/store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDialogComponent} from "../../feature/products/product-dialog/product-dialog.component";
-import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog/confirm-dialog.component";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {NotificationService} from "../services/notification/notification.service";
 
 @Component({

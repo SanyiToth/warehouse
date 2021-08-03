@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 import {StoresContainerComponent} from './stores-container/stores-container.component';
 import {StoresRoutingModule} from './stores-routing.module';
 import {MatTableModule} from "@angular/material/table";
-import {TableListModule} from "../../shared/table-list/table-list.module";
+import {StoresListModule} from "./stores-list/stores-list.module";
 import {HeaderModule} from "../../shared/header/header.module";
-import {DialogModule} from "../../shared/dialogs/dialog.module";
+import {ConfirmDialogModule} from "../../shared/confirm-dialog/confirm-dialog.module";
 
 
 @NgModule({
@@ -14,10 +14,10 @@ import {DialogModule} from "../../shared/dialogs/dialog.module";
   ],
   imports: [
     CommonModule,
-    DialogModule,
+    ConfirmDialogModule,
     StoresRoutingModule,
     MatTableModule,
-    TableListModule,
+    StoresListModule,
     HeaderModule
   ]
 })

@@ -5,7 +5,7 @@ import {AuthService} from "../../../shared/auth/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {StoreDialogComponent} from "../../../shared/dialogs/store-dialog/store-dialog.component";
+import {StoreDialogComponent} from "../../stores/store-dialog/store-dialog.component";
 
 @Component({
   selector: 'app-products-table',
