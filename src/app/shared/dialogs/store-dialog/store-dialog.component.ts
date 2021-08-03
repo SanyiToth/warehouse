@@ -26,11 +26,27 @@ export class StoreDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.data) {
       this.storeId?.setValue(this.data.element.storeId);
+      this.address?.setValue(this.data.element.address);
+      this.width?.setValue(this.data.element.width);
+      this.length?.setValue(this.data.element.length);
     }
   }
 
+
   get storeId(): AbstractControl | null {
     return this.storeForm.get('storeId');
+  }
+
+  get address(): AbstractControl | null {
+    return this.storeForm.get('address');
+  }
+
+  get width(): AbstractControl | null {
+    return this.storeForm.get('width');
+  }
+
+  get length(): AbstractControl | null {
+    return this.storeForm.get('length');
   }
 
 }
