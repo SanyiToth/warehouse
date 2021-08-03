@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "../../feature/stores/store.interface";
 import {Product} from "../services/products/product.interface";
 import {AuthService} from "../auth/auth.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {StoreDialogComponent} from "../dialogs/store-dialog/store-dialog.component";
 import {ActivatedRoute} from "@angular/router";
 import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.component";
@@ -14,6 +14,8 @@ import {ProductDialogComponent} from "../dialogs/product-dialog/product-dialog.c
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
+
+
   @Input() data!: any;
   @Output() deletedElementToParent = new EventEmitter<Product | Store>();
   displayedColumns!: string[];
@@ -34,9 +36,16 @@ export class TableListComponent implements OnInit {
   onAddNew() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-     this.route.routeConfig?.path === 'products' ?
-        this.dialog.open(ProductDialogComponent, dialogConfig) :
-        this.dialog.open(StoreDialogComponent, dialogConfig);
+    if (this.route.routeConfig?.path === 'products') {
+      this.dialog.open(ProductDialogComponent, dialogConfig);
+      this.dialog.afterAllClosed.subscribe(resp => {
+
+
+        }
+      )
+    } else {
+      this.dialog.open(StoreDialogComponent, dialogConfig);
+    }
   }
 
   getDeletedElement($event: any) {
