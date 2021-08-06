@@ -38,6 +38,8 @@ export class ProductsContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
+      .pipe(
+        switchMap(() => this.productsService.()))
       .subscribe(resp => {
       });
   }

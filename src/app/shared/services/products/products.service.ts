@@ -18,6 +18,11 @@ export class ProductsService {
     return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
   }
 
+
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(environment.API_URL + ProductsService.PATH, product);
+  }
+
   deleteProduct(id: number | undefined): Observable<Product[]> {
     return this.http.delete<Product[]>(environment.API_URL + ProductsService.PATH + `/${id}`);
   }
