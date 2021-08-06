@@ -43,6 +43,12 @@
       "name": "Product 7",
       "length": 22,
       "date": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "name": "dsada",
+      "width": 2,
+      "length": 2,
+      "id": 8
     }
   ],
   "stores": [

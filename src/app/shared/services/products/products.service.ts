@@ -18,7 +18,6 @@ export class ProductsService {
     return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
   }
 
-
   saveProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(environment.API_URL + ProductsService.PATH, product);
   }

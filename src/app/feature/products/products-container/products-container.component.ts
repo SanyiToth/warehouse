@@ -6,6 +6,7 @@ import {switchMap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 import {AuthService} from "../../../shared/auth/auth.service";
+import {NotificationService} from "../../../shared/services/notification/notification.service";
 
 @Component({
   selector: 'app-products-container',
@@ -16,7 +17,6 @@ export class ProductsContainerComponent implements OnInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, null>;
 
-  newProduct!:Product;
   products: Product[] = [];
   deletedElement!: Product;
 
@@ -25,7 +25,8 @@ export class ProductsContainerComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private auth: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private notification: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -38,10 +39,14 @@ export class ProductsContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
-      .pipe(
-        switchMap(() => this.productsService.()))
-      .subscribe(resp => {
-      });
+      .subscribe(productDialogValues => {
+        if (productDialogValues)
+          this.productsService
+            .saveProduct(productDialogValues)
+            .subscribe(() => {
+              this.notification.open('Saved successfully!')
+            });
+      })
   }
 
 
