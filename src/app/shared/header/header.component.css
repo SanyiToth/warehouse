@@ -3,12 +3,6 @@ a {
   color: white;
 }
 
-mat-toolbar {
-  width: 90%;
-  margin: auto;
-
-}
-
 .spacer {
   flex: 1 1 auto;
 }

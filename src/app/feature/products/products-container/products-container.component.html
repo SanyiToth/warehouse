@@ -1,7 +1,9 @@
-<app-header></app-header>
-<h2>Products</h2>
-<app-products-list [products]="products" (dataToParent)="getDeletedElement($event)"></app-products-list>
-<button mat-raised-button [disabled]="!isLoggedIn" (click)="onAddNew()" color="primary" type="button">
-  Add new
-  <mat-icon>add</mat-icon>
-</button>
+<div class="product-container">
+  <app-header></app-header>
+  <h2>Products</h2>
+  <app-products-list [products]="products" (dataToParent)="getDeletedElement($event)"></app-products-list>
+  <button mat-raised-button [disabled]="!isLoggedIn" (click)="onAddNew()" color="primary" type="button">
+    Add new
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
