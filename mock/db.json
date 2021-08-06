@@ -9,54 +9,11 @@
   ],
   "products": [
     {
-      "id": 1,
       "name": "Product 1",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "id": 3,
-      "name": "Product 3",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "id": 4,
-      "name": "Product 4",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "id": 5,
-      "name": "Product 5",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "id": 6,
-      "name": "Product 6",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "id": 7,
-      "name": "Product 7",
-      "length": 22,
-      "date": "2012-04-23T18:25:43.511Z"
-    },
-    {
-      "name": "asda",
       "width": 2,
-      "length": 2,
-      "date": "2021-08-06T19:32:09.076Z",
-      "id": 8
-    },
-    {
-      "name": "fddsf",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-06T19:34:22.597Z",
-      "id": 9
+      "length": 3,
+      "date": "2021-08-06T19:42:37.802Z",
+      "id": 1
     }
   ],
   "stores": [

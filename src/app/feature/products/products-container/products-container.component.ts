@@ -15,7 +15,7 @@ import {NotificationService} from "../../../shared/services/notification/notific
 })
 export class ProductsContainerComponent implements OnInit {
 
-  dialogRefProduct!: MatDialogRef<ProductDialogComponent, null>;
+  dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
 
   newProduct!: Product;
   products: Product[] = [];
@@ -46,13 +46,13 @@ export class ProductsContainerComponent implements OnInit {
         if (productDialogValues) {
           this.newProduct = productDialogValues;
           this.newProduct.date = new Date().toISOString();
+          this.productsService
+            .saveProduct(this.newProduct)
+            .subscribe(newProduct => {
+              this.products = [...this.products, newProduct]
+              this.notification.open('Saved successfully!')
+            });
         }
-        this.productsService
-          .saveProduct(this.newProduct)
-          .subscribe(newProduct => {
-            this.products = [...this.products, newProduct]
-            this.notification.open('Saved successfully!')
-          });
       })
   }
 
