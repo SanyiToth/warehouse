@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {ActivatedRoute} from "@angular/router";
 
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
+import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 
 @Component({
   selector: 'app-products-list',
@@ -13,7 +14,7 @@ import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dia
 })
 export class ProductsListComponent implements OnInit {
 
-  dialogRefProduct!: MatDialogRef<ConfirmDialogComponent, null>;
+  dialogRefProduct!: MatDialogRef<ProductDialogComponent, null>;
 
   @Input() products!: Product[];
   @Output() DataToParent = new EventEmitter();
@@ -40,7 +41,7 @@ export class ProductsListComponent implements OnInit {
     dialogConfig.data = {
       element: 1
     }
-    this.dialogRefProduct = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+    this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
       .subscribe(resp => {
         console.log('resp', resp)

@@ -10,6 +10,8 @@ import {ContextMenuModule} from "../../shared/context-menu/context-menu.module";
 import {ProductDialogComponent} from "./product-dialog/product-dialog.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatTableModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
     HeaderModule,
     MatButtonModule,
     MatIconModule,
