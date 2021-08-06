@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -21,7 +21,11 @@ export class ProductDialogComponent {
 
 
 
-  onSubmit() {
 
+  onSubmit() {
+    console.log('this.productForm.value', this.productForm.value)
+    this.dialogRef.close(this.productForm.value);
   }
+
+
 }

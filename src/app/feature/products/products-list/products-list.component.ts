@@ -1,24 +1,27 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../product.interface";
-import {Store} from "../../stores/store.interface";
 import {AuthService} from "../../../shared/auth/auth.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
-import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {StoreDialogComponent} from "../../stores/store-dialog/store-dialog.component";
+
+import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 
 @Component({
-  selector: 'app-products-table',
+  selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
 
-  @Input() products!: any;
+  dialogRefProduct!: MatDialogRef<ConfirmDialogComponent, null>;
+
+  @Input() products!: Product[];
   @Output() DataToParent = new EventEmitter();
   displayedColumns!: string[];
-  deletedElement!: Product | Store;
+  deletedElement!: Product;
   isLoggedIn!: boolean;
+
+
 
   constructor(private auth: AuthService,
               private dialog: MatDialog,
@@ -34,18 +37,17 @@ export class ProductsListComponent implements OnInit {
   onAddNew() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    if (this.route.routeConfig?.path === 'products') {
-      this.dialog.open(ProductDialogComponent, dialogConfig);
-      this.dialog.afterAllClosed.subscribe(resp => {
-
-        }
-      )
-    } else {
-      this.dialog.open(StoreDialogComponent, dialogConfig);
+    dialogConfig.data = {
+      element: 1
     }
+    this.dialogRefProduct = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+    this.dialogRefProduct.afterClosed()
+      .subscribe(resp => {
+        console.log('resp', resp)
+      });
   }
 
-  getDeletedElement($event: any) {
+  getDeletedElement($event: Product) {
     this.deletedElement = $event;
     this.DataToParent.emit(this.deletedElement);
   }

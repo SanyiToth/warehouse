@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
-import {Store} from "../../stores/store.interface";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {switchMap} from "rxjs/operators";
 
@@ -13,7 +12,7 @@ import {switchMap} from "rxjs/operators";
 export class ProductsContainerComponent implements OnInit {
 
   products: Product[] = [];
-  deletedElement!: Product | Store;
+  deletedElement!: Product;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService) {
@@ -23,7 +22,7 @@ export class ProductsContainerComponent implements OnInit {
     this.products = this.route.snapshot.data.products;
   }
 
-  getDeletedElement($event: Product | Store) {
+  getDeletedElement($event: Product) {
     this.deletedElement = $event;
     this.productsService.deleteProduct(this.deletedElement.id)
       .pipe(

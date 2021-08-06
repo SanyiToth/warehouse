@@ -16,10 +16,10 @@ export class HeaderComponent implements OnInit {
       path: "Products",
       routerLink: ""
     },
-    {
+   /* {
       path: "Store",
       routerLink: "/stores"
-    }
+    }*/
   ]
   loggedInUser!: User;
   isLoggedIn!: boolean;
