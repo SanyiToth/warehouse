@@ -44,7 +44,7 @@ export class ProductsListComponent implements OnInit {
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
       .subscribe(resp => {
-        console.log('resp', resp)
+
       });
   }
 

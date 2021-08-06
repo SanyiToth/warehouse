@@ -21,9 +21,7 @@ export class ProductDialogComponent {
 
 
 
-
   onSubmit() {
-    console.log('this.productForm.value', this.productForm.value)
     this.dialogRef.close(this.productForm.value);
   }
 

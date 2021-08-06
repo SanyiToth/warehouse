@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-  <form [formGroup]="productForm" >
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field>
         <input type="text" autofocus matInput placeholder="Name" formControlName="name">
@@ -15,9 +15,8 @@
         <input type="number" autofocus matInput placeholder="Length" formControlName="length">
       </mat-form-field>
     </p>
+    <button mat-button type="submit">Save</button>
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
   </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close(true)">Delete</button>
-  <button mat-button (click)="dialogRef.close(false)">Cancel</button>
-</div>
+
