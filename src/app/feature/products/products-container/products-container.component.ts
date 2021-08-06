@@ -49,7 +49,8 @@ export class ProductsContainerComponent implements OnInit {
         }
         this.productsService
           .saveProduct(this.newProduct)
-          .subscribe(() => {
+          .subscribe(newProduct => {
+            this.products = [...this.products, newProduct]
             this.notification.open('Saved successfully!')
           });
       })
