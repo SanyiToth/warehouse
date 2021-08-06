@@ -45,24 +45,29 @@ export class ProductsListComponent implements OnInit {
     };
     this.dialogRefConfirm = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     this.dialogRefConfirm.afterClosed()
-      .subscribe(resp => {
-        if (resp) this.dataToParent.emit(element);
+      .subscribe(confirmDialogValue => {
+        if (confirmDialogValue) this.dataToParent.emit(element.id);
         this.dialogRefConfirm = null;
       });
   }
 
 
-  onEdit() {
-    /*    const dialogConfig = new MatDialogConfig();
-        dialogConfig.disableClose = false;
-        dialogConfig.data = {
-          element: this.element
-        };
-        this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
-        this.dialogRefProduct.afterClosed()
-          .subscribe(resp => {
-            this.dialogRefProduct = null;
-          });*/
+  onEdit(element: Product) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.data = {
+      element: element
+    };
+    this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
+    this.dialogRefProduct.afterClosed()
+      .subscribe(productDialogValues => {
+        if (productDialogValues) {
+          let newProduct: Product = productDialogValues;
+          newProduct.id = element.id;
+          this.dataToParent.emit(newProduct);
+        }
+        this.dialogRefProduct = null;
+      });
 
   }
 
