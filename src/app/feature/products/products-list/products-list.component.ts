@@ -1,11 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../product.interface";
-import {AuthService} from "../../../shared/auth/auth.service";
-import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {ActivatedRoute} from "@angular/router";
-
-import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
-import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 
 @Component({
   selector: 'app-products-list',
@@ -14,42 +8,24 @@ import {ProductDialogComponent} from "../product-dialog/product-dialog.component
 })
 export class ProductsListComponent implements OnInit {
 
-  dialogRefProduct!: MatDialogRef<ProductDialogComponent, null>;
+
 
   @Input() products!: Product[];
-  @Output() DataToParent = new EventEmitter();
+  @Output() dataToParent = new EventEmitter();
   displayedColumns!: string[];
-  deletedElement!: Product;
-  isLoggedIn!: boolean;
 
 
 
-  constructor(private auth: AuthService,
-              private dialog: MatDialog,
-              private route: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.auth.isLoggedIn();
+
     this.displayedColumns = ["name", "width", "length", "date", "actions",];
 
   }
 
-  onAddNew() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.data = {
-      element: 1
-    }
-    this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
-    this.dialogRefProduct.afterClosed()
-      .subscribe(resp => {
-
-      });
-  }
-
   getDeletedElement($event: Product) {
-    this.deletedElement = $event;
-    this.DataToParent.emit(this.deletedElement);
+    this.dataToParent.emit($event);
   }
 }

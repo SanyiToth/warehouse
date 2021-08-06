@@ -13,9 +13,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-  <button mat-raised-button [disabled]="!isLoggedIn" (click)="onAddNew()" color="primary" type="button">
-    Add new
-    <mat-icon>add</mat-icon>
-  </button>
 </article>
