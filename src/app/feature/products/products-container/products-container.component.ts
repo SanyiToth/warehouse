@@ -17,8 +17,11 @@ export class ProductsContainerComponent implements OnInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, null>;
 
+  newProduct!: Product;
   products: Product[] = [];
+
   deletedElement!: Product;
+
 
   isLoggedIn!: boolean;
 
@@ -40,12 +43,15 @@ export class ProductsContainerComponent implements OnInit {
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
       .subscribe(productDialogValues => {
-        if (productDialogValues)
-          this.productsService
-            .saveProduct(productDialogValues)
-            .subscribe(() => {
-              this.notification.open('Saved successfully!')
-            });
+        if (productDialogValues) {
+          this.newProduct = productDialogValues;
+          this.newProduct.date = new Date().toISOString();
+        }
+        this.productsService
+          .saveProduct(this.newProduct)
+          .subscribe(() => {
+            this.notification.open('Saved successfully!')
+          });
       })
   }
 
