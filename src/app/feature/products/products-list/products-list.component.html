@@ -6,7 +6,12 @@
         <div class="btn-edit" *ngIf="item === 'actions';">
           <app-context-menu [element]="element" (deletedElement)="getDeletedElement($event)"></app-context-menu>
         </div>
-        {{element[item]}}
+        <div *ngIf="item==='date'">
+          {{element[item] | date}}
+        </div>
+        <div *ngIf="item!=='date'">
+          {{element[item]}}
+        </div>
       </td>
     </ng-container>
 

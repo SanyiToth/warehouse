@@ -64,7 +64,8 @@ export class ProductsContainerComponent implements OnInit {
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
           this.products = products;
-        }, errorMsg => {
+        }, error => {
+          this.notification.open('Can not load the list!')
 
         }
       )
