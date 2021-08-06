@@ -9,10 +9,10 @@
   ],
   "products": [
     {
-      "name": "Product",
-      "width": null,
-      "length": null,
-      "date": "2021-08-06T21:02:29.921Z",
+      "name": "Product 1 ",
+      "width": 2,
+      "length": 2,
+      "date": "2021-08-06T21:27:29.349Z",
       "id": 1
     }
   ],

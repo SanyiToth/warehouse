@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-product-dialog',
@@ -20,10 +20,21 @@ export class ProductDialogComponent {
   })
 
 
-
   onSubmit() {
     this.dialogRef.close(this.productForm.value);
   }
 
+
+  get name(): AbstractControl | null {
+    return this.productForm.get('name');
+  }
+
+  get width(): AbstractControl | null {
+    return this.productForm.get('width');
+  }
+
+  get length(): AbstractControl | null {
+    return this.productForm.get('length');
+  }
 
 }
