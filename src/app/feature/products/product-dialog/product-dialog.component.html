@@ -3,19 +3,28 @@
     <p>
       <mat-form-field>
         <input type="text" autofocus matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf="name?.invalid && !name?.value && name?.touched">
+          Please fill the product name!
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
         <input type="number" min="1" max="5" autofocus matInput placeholder="Width" formControlName="width">
+        <mat-error *ngIf="width?.invalid && !width?.value && width?.touched">
+          Please choose the product width!
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field>
         <input type="number" min="1" max="5" autofocus matInput placeholder="Length" formControlName="length">
+        <mat-error *ngIf="length?.invalid && !length?.value && length?.touched">
+          Please choose the product length!
+        </mat-error>
       </mat-form-field>
     </p>
-    <button mat-button type="submit">Save</button>
+    <button mat-button type="submit" [disabled]="productForm?.invalid">Save</button>
     <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
   </form>
 </div>

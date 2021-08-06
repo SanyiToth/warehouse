@@ -4,9 +4,9 @@ import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {switchMap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
+import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 
 @Component({
   selector: 'app-products-container',
@@ -20,8 +20,7 @@ export class ProductsContainerComponent implements OnInit {
   newProduct!: Product;
   products: Product[] = [];
 
-  deletedElement!: Product;
-
+  deletedElementId!: number;
 
   isLoggedIn!: boolean;
 
@@ -51,24 +50,37 @@ export class ProductsContainerComponent implements OnInit {
             .subscribe(newProduct => {
               this.products = [...this.products, newProduct]
               this.notification.open('Saved successfully!')
+            }, error => {
+              this.notification.open('Oooops!Something happened!Try again later!')
+
             });
         }
       })
   }
 
 
-  getDeletedElement($event: Product) {
-    this.deletedElement = $event;
-    this.productsService.deleteProduct(this.deletedElement.id)
-      .pipe(
-        switchMap(() => this.productsService.getProducts()))
-      .subscribe(products => {
+  getDataFromChild($event: Product | number) {
+    if (typeof $event === 'number') {
+      this.deletedElementId = $event;
+      this.productsService.deleteProduct(this.deletedElementId)
+        .pipe(
+          switchMap(() => this.productsService.getProducts()))
+        .subscribe(products => {
+            this.products = products;
+          }, () => {
+            this.notification.open('Can not load the list!')
+          });
+    } else {
+      this.productsService
+        .updateProduct($event, $event.id)
+        .pipe(
+          switchMap(() => this.productsService.getProducts()))
+        .subscribe(products => {
           this.products = products;
-        }, error => {
+        }, () => {
           this.notification.open('Can not load the list!')
-
-        }
-      )
+        });
+    }
   }
 
 }

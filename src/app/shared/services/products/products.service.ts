@@ -25,4 +25,9 @@ export class ProductsService {
   deleteProduct(id: number | undefined): Observable<Product[]> {
     return this.http.delete<Product[]>(environment.API_URL + ProductsService.PATH + `/${id}`);
   }
+
+  updateProduct(updatedProduct: Product, id: number | undefined): Observable<Product> {
+    return this.http.patch<Product>(environment.API_URL + ProductsService.PATH + `/${id}`, updatedProduct);
+  }
+
 }
