@@ -7,6 +7,6 @@
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-products-paginator></app-products-paginator>
+  <app-products-paginator [data]="products" (dataToParent)="getPaginatorEvent($event)"></app-products-paginator>
 
 </div>

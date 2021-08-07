@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Product} from "../product.interface";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-products-paginator',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsPaginatorComponent implements OnInit {
 
-  constructor() { }
+  @Input() data!: Product[];
+  @Output() dataToParent = new EventEmitter();
+
+  constructor() {
+  }
+
 
   ngOnInit(): void {
   }
 
+  onPaginator($event: PageEvent) {
+    this.dataToParent.emit($event);
+  }
 }

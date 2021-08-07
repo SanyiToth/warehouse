@@ -7,6 +7,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-products-container',
@@ -92,5 +93,10 @@ export class ProductsContainerComponent implements OnInit {
       }, error => {
         this.notification.open('Oooops!Something happened!Try again later!');
       })
+  }
+
+  getPaginatorEvent($event: PageEvent) {
+    console.log('page event parent', $event);
+
   }
 }
