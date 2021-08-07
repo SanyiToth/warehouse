@@ -18,9 +18,15 @@ export class ProductsService {
   getProducts(searchedName?: string, pageEvent?: PageEvent): Observable<Product[]> {
     if (searchedName) {
       return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH + `?name_like=${searchedName}`);
+    } else if (pageEvent) {
+      return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH+ `?_page=${pageEvent.pageIndex}&_limit=${pageEvent.pageSize}`);
     } else {
       return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
     }
+  }
+
+  getProductsAfterPageEvent(pageEvent?: PageEvent): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
   }
 
   saveProduct(product: Product): Observable<Product> {

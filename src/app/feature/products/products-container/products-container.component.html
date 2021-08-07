@@ -1,12 +1,12 @@
 <div class="product-container">
   <app-header></app-header>
   <app-products-search-engine (dataToParent)="getSearchedName($event)"></app-products-search-engine>
-  <app-products-list [products]="products" (dataToParent)="getDataFromChild($event)"></app-products-list>
+  <app-products-list [products]="productPage" (dataToParent)="getDataFromChild($event)"></app-products-list>
   <button mat-raised-button [disabled]="!isLoggedIn" (click)="onAddNew()" color="primary" type="button">
     Add new
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-products-paginator [data]="products" (dataToParent)="getPaginatorEvent($event)"></app-products-paginator>
+  <app-products-paginator [data]="allProducts" (dataToParent)="getPaginatorEvent($event)"></app-products-paginator>
 
 </div>

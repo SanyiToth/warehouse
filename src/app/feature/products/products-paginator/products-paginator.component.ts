@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Product} from "../product.interface";
 import {PageEvent} from "@angular/material/paginator";
+import {ProductsService} from "../../../shared/services/products/products.service";
 
 @Component({
   selector: 'app-products-paginator',
@@ -10,16 +11,18 @@ import {PageEvent} from "@angular/material/paginator";
 export class ProductsPaginatorComponent implements OnInit {
 
   @Input() data!: Product[];
-  @Output() dataToParent = new EventEmitter();
+  @Output() dataToParent = new EventEmitter<PageEvent>();
 
-  constructor() {
+  pageEvent!: PageEvent;
+  datasource: null;
+  pageIndex!: number;
+  pageSize!: number;
+  length!: number;
+
+  constructor(private productsService: ProductsService) {
   }
 
 
   ngOnInit(): void {
-  }
-
-  onPaginator($event: PageEvent) {
-    this.dataToParent.emit($event);
   }
 }
