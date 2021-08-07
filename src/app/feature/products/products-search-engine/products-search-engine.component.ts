@@ -1,12 +1,12 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-products-search-engine',
   templateUrl: './products-search-engine.component.html',
   styleUrls: ['./products-search-engine.component.css']
 })
-export class ProductsSearchEngineComponent implements OnInit {
+export class ProductsSearchEngineComponent  {
 
 
   @Output() dataToParent = new EventEmitter<string>();
@@ -15,20 +15,15 @@ export class ProductsSearchEngineComponent implements OnInit {
   }
 
   searchEngineForm: FormGroup = this.fb.group({
-    name: [null, Validators.required]
+    name: [null]
   })
 
-
-  ngOnInit(): void {
-
-
-  }
 
   get name(): AbstractControl | null {
     return this.searchEngineForm.get('name');
   }
 
   onSearch() {
-    this.dataToParent.emit(this.searchEngineForm.value);
+    this.dataToParent.emit(this.name?.value);
   }
 }

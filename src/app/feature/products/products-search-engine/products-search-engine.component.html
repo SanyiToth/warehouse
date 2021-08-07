@@ -1,9 +1,8 @@
-<form [formGroup]="searchEngineForm" (submit)="onSearch()">
+<form [formGroup]="searchEngineForm">
   <mat-form-field>
-    <input matInput placeholder="Product name" type="text" formControlName="name">
+    <input matInput placeholder="Search product name" type="text" formControlName="name" (keyup)="onSearch()">
     <mat-error>
       Please type the product name!
     </mat-error>
   </mat-form-field>
-  <button mat-stroked-button type="submit" [disabled]="searchEngineForm?.invalid">Search</button>
 </form>

@@ -66,10 +66,10 @@ export class ProductsContainerComponent implements OnInit {
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
-            this.products = products;
-          }, () => {
-            this.notification.open('Can not load the list!')
-          });
+          this.products = products;
+        }, () => {
+          this.notification.open('Can not load the list!')
+        });
     } else {
       this.productsService
         .updateProduct($event, $event.id)
@@ -83,4 +83,14 @@ export class ProductsContainerComponent implements OnInit {
     }
   }
 
+  getSearchedName($event: string) {
+    this.productsService.getProducts($event)
+      .subscribe(resp => {
+        if (resp.length) {
+          this.products = resp;
+        }
+      }, error => {
+        this.notification.open('Oooops!Something happened!Try again later!');
+      })
+  }
 }

@@ -14,8 +14,12 @@ export class ProductsService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
+  getProducts($event: string = ''): Observable<Product[]> {
+    if ($event !== '') {
+      return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH + `?name_like=${$event}`);
+    } else {
+      return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
+    }
   }
 
   saveProduct(product: Product): Observable<Product> {
