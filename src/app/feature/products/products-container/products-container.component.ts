@@ -26,6 +26,12 @@ export class ProductsContainerComponent implements OnInit {
 
   isLoggedIn!: boolean;
 
+  pageEvent: PageEvent | undefined;
+  datasource: Product[] = [];
+  pageIndex!: number | undefined;
+  pageSize!: number | undefined;
+  length!: number;
+
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -34,10 +40,28 @@ export class ProductsContainerComponent implements OnInit {
               private notification: NotificationService) {
   }
 
+  public getServerData(event?: PageEvent) {
+    this.pageEvent = event;
+    this.productsService.getProducts('', event)
+      .subscribe(
+        productPage => {
+          this.datasource = productPage;
+          this.pageIndex = this.pageEvent?.pageIndex;
+          this.pageSize = this.pageEvent?.pageSize;
+          this.length = this.allProducts?.length
+        },
+        error => {
+          this.notification.open('Oooops!Something happened!Try again later!')
+        }
+      );
+    return event;
+  }
+
+
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
     this.isLoggedIn = this.auth.isLoggedIn();
-
+    this.getServerData({previousPageIndex: 0, pageIndex: 0, pageSize: 5, length: this.allProducts.length})
   }
 
   onAddNew() {
@@ -61,7 +85,6 @@ export class ProductsContainerComponent implements OnInit {
         }
       })
   }
-
 
   getDataFromChild($event: Product | number) {
     if (typeof $event === 'number') {
@@ -99,10 +122,8 @@ export class ProductsContainerComponent implements OnInit {
   }
 
   getPaginatorEvent($event: PageEvent) {
-    console.log('page event parent', $event);
     this.productsService.getProducts('', $event)
       .subscribe(resp => {
-        console.log('resp paginator', resp, $event);
         this.productPage = resp;
       })
   }

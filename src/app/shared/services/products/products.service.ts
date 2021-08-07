@@ -19,7 +19,8 @@ export class ProductsService {
     if (searchedName) {
       return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH + `?name_like=${searchedName}`);
     } else if (pageEvent) {
-      return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH+ `?_page=${pageEvent.pageIndex}&_limit=${pageEvent.pageSize}`);
+      console.log('path',`?_page=${pageEvent.pageIndex+1}&_limit=${pageEvent.pageSize}`, pageEvent);
+      return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH+ `?_page=${pageEvent.pageIndex+1}&_limit=${pageEvent.pageSize}`);
     } else {
       return this.http.get<Product[]>(environment.API_URL + ProductsService.PATH);
     }
