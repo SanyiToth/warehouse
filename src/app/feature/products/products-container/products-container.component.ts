@@ -20,17 +20,9 @@ export class ProductsContainerComponent implements OnInit {
 
   newProduct!: Product;
   allProducts: Product[] = [];
-  productPage!: Product[];
 
   deletedElementId!: number;
-
   isLoggedIn!: boolean;
-
-  pageEvent: PageEvent | undefined;
-  datasource: Product[] = [];
-  pageIndex!: number | undefined;
-  pageSize!: number | undefined;
-  length!: number;
 
 
   constructor(private route: ActivatedRoute,
@@ -40,29 +32,12 @@ export class ProductsContainerComponent implements OnInit {
               private notification: NotificationService) {
   }
 
-  public getServerData(event?: PageEvent) {
-    this.pageEvent = event;
-    this.productsService.getProducts('', event)
-      .subscribe(
-        productPage => {
-          this.datasource = productPage;
-          this.pageIndex = this.pageEvent?.pageIndex;
-          this.pageSize = this.pageEvent?.pageSize;
-          this.length = this.allProducts?.length
-        },
-        error => {
-          this.notification.open('Oooops!Something happened!Try again later!')
-        }
-      );
-    return event;
-  }
-
 
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.getServerData({previousPageIndex: 0, pageIndex: 0, pageSize: 5, length: this.allProducts.length})
   }
+
 
   onAddNew() {
     const dialogConfig = new MatDialogConfig();
@@ -80,7 +55,6 @@ export class ProductsContainerComponent implements OnInit {
               this.notification.open('Saved successfully!')
             }, error => {
               this.notification.open('Oooops!Something happened!Try again later!')
-
             });
         }
       })
@@ -110,8 +84,11 @@ export class ProductsContainerComponent implements OnInit {
     }
   }
 
-  getSearchedName($event: string) {
-    this.productsService.getProducts($event)
+  getSearchedName(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.productsService
+      .getProducts(filterValue)
       .subscribe(resp => {
         if (resp.length) {
           this.allProducts = resp;
@@ -121,10 +98,4 @@ export class ProductsContainerComponent implements OnInit {
       })
   }
 
-  getPaginatorEvent($event: PageEvent) {
-    this.productsService.getProducts('', $event)
-      .subscribe(resp => {
-        this.productPage = resp;
-      })
-  }
 }
