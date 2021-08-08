@@ -1,0 +1,8 @@
+[matPrefix] {
+  vertical-align: bottom;
+  margin-right: 4px;
+}
+
+.search, .registration, .property {
+  margin-right: 8px;
+}

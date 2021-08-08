@@ -7,6 +7,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-products-container',
@@ -18,11 +19,19 @@ export class ProductsContainerComponent implements OnInit {
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
 
   newProduct!: Product;
-  products: Product[] = [];
+  allProducts: Product[] = [];
+  productPage!: Product[];
 
   deletedElementId!: number;
 
   isLoggedIn!: boolean;
+
+  pageEvent: PageEvent | undefined;
+  datasource: Product[] = [];
+  pageIndex!: number | undefined;
+  pageSize!: number | undefined;
+  length!: number;
+
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -31,9 +40,28 @@ export class ProductsContainerComponent implements OnInit {
               private notification: NotificationService) {
   }
 
+  public getServerData(event?: PageEvent) {
+    this.pageEvent = event;
+    this.productsService.getProducts('', event)
+      .subscribe(
+        productPage => {
+          this.datasource = productPage;
+          this.pageIndex = this.pageEvent?.pageIndex;
+          this.pageSize = this.pageEvent?.pageSize;
+          this.length = this.allProducts?.length
+        },
+        error => {
+          this.notification.open('Oooops!Something happened!Try again later!')
+        }
+      );
+    return event;
+  }
+
+
   ngOnInit(): void {
-    this.products = this.route.snapshot.data.products;
+    this.allProducts = this.route.snapshot.data.products;
     this.isLoggedIn = this.auth.isLoggedIn();
+    this.getServerData({previousPageIndex: 0, pageIndex: 0, pageSize: 5, length: this.allProducts.length})
   }
 
   onAddNew() {
@@ -48,7 +76,7 @@ export class ProductsContainerComponent implements OnInit {
           this.productsService
             .saveProduct(this.newProduct)
             .subscribe(newProduct => {
-              this.products = [...this.products, newProduct]
+              this.allProducts = [...this.allProducts, newProduct]
               this.notification.open('Saved successfully!')
             }, error => {
               this.notification.open('Oooops!Something happened!Try again later!')
@@ -58,7 +86,6 @@ export class ProductsContainerComponent implements OnInit {
       })
   }
 
-
   getDataFromChild($event: Product | number) {
     if (typeof $event === 'number') {
       this.deletedElementId = $event;
@@ -66,7 +93,7 @@ export class ProductsContainerComponent implements OnInit {
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
-          this.products = products;
+          this.allProducts = products;
         }, () => {
           this.notification.open('Can not load the list!')
         });
@@ -76,7 +103,7 @@ export class ProductsContainerComponent implements OnInit {
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
-          this.products = products;
+          this.allProducts = products;
         }, () => {
           this.notification.open('Can not load the list!')
         });
@@ -87,10 +114,17 @@ export class ProductsContainerComponent implements OnInit {
     this.productsService.getProducts($event)
       .subscribe(resp => {
         if (resp.length) {
-          this.products = resp;
+          this.allProducts = resp;
         }
       }, error => {
         this.notification.open('Oooops!Something happened!Try again later!');
+      })
+  }
+
+  getPaginatorEvent($event: PageEvent) {
+    this.productsService.getProducts('', $event)
+      .subscribe(resp => {
+        this.productPage = resp;
       })
   }
 }
