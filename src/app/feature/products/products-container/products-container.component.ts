@@ -18,15 +18,12 @@ import {MatTableDataSource} from "@angular/material/table";
 export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
-
   newProduct!: Product;
   allProducts: Product[] = [];
-
   deletedElementId!: number;
   isLoggedIn!: boolean;
-
-
   dataSource!: MatTableDataSource<Product>;
+  filterValue!: string;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -63,17 +60,18 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
             .saveProduct(this.newProduct)
             .subscribe(newProduct => {
               this.dataSource = new MatTableDataSource([...this.allProducts, newProduct]);
-              this.dataSource._updateChangeSubscription();
               this.dataSource.paginator = this.paginator;
+              this.dataSource.filter = this.filterValue;
+              this.dataSource._updateChangeSubscription();
               this.notification.open('Saved successfully!');
-            }, error => {
+            }, () => {
               this.notification.open('Oooops!Something happened!Try again later!');
             });
         }
       })
   }
 
-  getDataFromChild($event: Product | number) {
+  applyEditOrDelete($event: Product | number) {
     if (typeof $event === 'number') {
       this.deletedElementId = $event;
       this.productsService
@@ -82,8 +80,10 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
           this.dataSource = new MatTableDataSource(products);
-          this.dataSource._updateChangeSubscription();
           this.dataSource.paginator = this.paginator;
+          this.dataSource.filter = this.filterValue;
+          this.dataSource._updateChangeSubscription();
+
         }, () => {
           this.notification.open('Can not load the list!')
         });
@@ -94,17 +94,19 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
           this.dataSource = new MatTableDataSource(products);
-          this.dataSource._updateChangeSubscription();
           this.dataSource.paginator = this.paginator;
+          this.dataSource.filter = this.filterValue;
+          this.dataSource._updateChangeSubscription();
         }, () => {
           this.notification.open('Can not load the list!')
         });
     }
   }
 
-  getFilterValue(filterValue: string) {
+  applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
+    this.filterValue = filterValue;
     this.dataSource.filter = filterValue;
   }
 }
