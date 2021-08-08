@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
@@ -7,14 +7,15 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-products-container',
   templateUrl: './products-container.component.html',
   styleUrls: ['./products-container.component.css']
 })
-export class ProductsContainerComponent implements OnInit {
+export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
 
@@ -25,17 +26,27 @@ export class ProductsContainerComponent implements OnInit {
   isLoggedIn!: boolean;
 
 
+  dataSource!: MatTableDataSource<Product>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private auth: AuthService,
               private dialog: MatDialog,
               private notification: NotificationService) {
+
   }
 
 
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
     this.isLoggedIn = this.auth.isLoggedIn();
+    this.dataSource = new MatTableDataSource(this.allProducts);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 
@@ -51,10 +62,12 @@ export class ProductsContainerComponent implements OnInit {
           this.productsService
             .saveProduct(this.newProduct)
             .subscribe(newProduct => {
-              this.allProducts = [...this.allProducts, newProduct]
-              this.notification.open('Saved successfully!')
+              this.dataSource = new MatTableDataSource([...this.allProducts, newProduct]);
+              this.dataSource._updateChangeSubscription();
+              this.dataSource.paginator = this.paginator;
+              this.notification.open('Saved successfully!');
             }, error => {
-              this.notification.open('Oooops!Something happened!Try again later!')
+              this.notification.open('Oooops!Something happened!Try again later!');
             });
         }
       })
@@ -63,11 +76,14 @@ export class ProductsContainerComponent implements OnInit {
   getDataFromChild($event: Product | number) {
     if (typeof $event === 'number') {
       this.deletedElementId = $event;
-      this.productsService.deleteProduct(this.deletedElementId)
+      this.productsService
+        .deleteProduct(this.deletedElementId)
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
-          this.allProducts = products;
+          this.dataSource = new MatTableDataSource(products);
+          this.dataSource._updateChangeSubscription();
+          this.dataSource.paginator = this.paginator;
         }, () => {
           this.notification.open('Can not load the list!')
         });
@@ -77,25 +93,18 @@ export class ProductsContainerComponent implements OnInit {
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
-          this.allProducts = products;
+          this.dataSource = new MatTableDataSource(products);
+          this.dataSource._updateChangeSubscription();
+          this.dataSource.paginator = this.paginator;
         }, () => {
           this.notification.open('Can not load the list!')
         });
     }
   }
 
-  getSearchedName(filterValue: string) {
+  getFilterValue(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.productsService
-      .getProducts(filterValue)
-      .subscribe(resp => {
-        if (resp.length) {
-          this.allProducts = resp;
-        }
-      }, error => {
-        this.notification.open('Oooops!Something happened!Try again later!');
-      })
+    this.dataSource.filter = filterValue;
   }
-
 }

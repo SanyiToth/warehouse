@@ -4,6 +4,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 import {AuthService} from "../../../shared/auth/auth.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-products-list',
@@ -13,7 +14,7 @@ import {AuthService} from "../../../shared/auth/auth.service";
 export class ProductsListComponent implements OnInit {
 
 
-  @Input() products!: Product[];
+  @Input() dataSource!: MatTableDataSource<Product>
   @Output() dataToParent = new EventEmitter();
   displayedColumns!: string[];
   isLoggedIn!: boolean;
@@ -26,10 +27,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.displayedColumns = ["name", "width", "length", "date", "actions"];
     this.isLoggedIn = this.auth.isLoggedIn();
-
   }
 
   getDeletedElement($event: Product) {
