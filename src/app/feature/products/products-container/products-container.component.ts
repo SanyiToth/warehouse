@@ -1,67 +1,49 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {switchMap} from "rxjs/operators";
+import { switchMap, tap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-products-container',
   templateUrl: './products-container.component.html',
   styleUrls: ['./products-container.component.css']
 })
-export class ProductsContainerComponent implements OnInit {
+export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
-
+  dataSource!: MatTableDataSource<Product>;
   newProduct!: Product;
-  allProducts: Product[] = [];
-  productPage!: Product[];
-
+  allProducts!: Product[];
   deletedElementId!: number;
-
   isLoggedIn!: boolean;
+  filterValue!: string;
 
-  pageEvent: PageEvent | undefined;
-  datasource: Product[] = [];
-  pageIndex!: number | undefined;
-  pageSize!: number | undefined;
-  length!: number;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private auth: AuthService,
               private dialog: MatDialog,
               private notification: NotificationService) {
-  }
 
-  public getServerData(event?: PageEvent) {
-    this.pageEvent = event;
-    this.productsService.getProducts('', event)
-      .subscribe(
-        productPage => {
-          this.datasource = productPage;
-          this.pageIndex = this.pageEvent?.pageIndex;
-          this.pageSize = this.pageEvent?.pageSize;
-          this.length = this.allProducts?.length
-        },
-        error => {
-          this.notification.open('Oooops!Something happened!Try again later!')
-        }
-      );
-    return event;
   }
 
 
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.getServerData({previousPageIndex: 0, pageIndex: 0, pageSize: 5, length: this.allProducts.length})
+    this.dataSource = new MatTableDataSource(this.allProducts);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   onAddNew() {
@@ -69,62 +51,67 @@ export class ProductsContainerComponent implements OnInit {
     dialogConfig.disableClose = false;
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
     this.dialogRefProduct.afterClosed()
-      .subscribe(productDialogValues => {
-        if (productDialogValues) {
-          this.newProduct = productDialogValues;
-          this.newProduct.date = new Date().toISOString();
-          this.productsService
-            .saveProduct(this.newProduct)
-            .subscribe(newProduct => {
-              this.allProducts = [...this.allProducts, newProduct]
-              this.notification.open('Saved successfully!')
-            }, error => {
-              this.notification.open('Oooops!Something happened!Try again later!')
+      .pipe(
+        tap(dialogValues => {
+            if (dialogValues) {
+              this.newProduct = dialogValues;
+              this.newProduct.date = new Date()
+                .toISOString();
+            }
+          }
+        ),
+        switchMap(() => this.productsService.saveProduct(this.newProduct)))
+      .subscribe(newProduct => {
+        this.allProducts = [...this.allProducts, newProduct];
+        this.updateDataSource(this.allProducts);
+        this.notification.open('Saved successfully!');
+      }, () => {
+        this.notification.open('Can not save this item! Try again later!')
+      });
 
-            });
-        }
-      })
   }
 
-  getDataFromChild($event: Product | number) {
-    if (typeof $event === 'number') {
-      this.deletedElementId = $event;
-      this.productsService.deleteProduct(this.deletedElementId)
-        .pipe(
-          switchMap(() => this.productsService.getProducts()))
-        .subscribe(products => {
-          this.allProducts = products;
-        }, () => {
-          this.notification.open('Can not load the list!')
-        });
-    } else {
-      this.productsService
-        .updateProduct($event, $event.id)
-        .pipe(
-          switchMap(() => this.productsService.getProducts()))
-        .subscribe(products => {
-          this.allProducts = products;
-        }, () => {
-          this.notification.open('Can not load the list!')
-        });
-    }
+
+  onDelete(productId: number) {
+    this.deletedElementId = productId;
+    this.productsService
+      .deleteProduct(this.deletedElementId)
+      .pipe(
+        switchMap(() => this.productsService.getProducts()))
+      .subscribe(products => {
+        this.allProducts = products;
+        this.updateDataSource(this.allProducts);
+        this.notification.open('Deleted successfully!');
+      }, () => {
+        this.notification.open('Can not delete this item! Try again later!')
+      });
   }
 
-  getSearchedName($event: string) {
-    this.productsService.getProducts($event)
-      .subscribe(resp => {
-        if (resp.length) {
-          this.allProducts = resp;
-        }
-      }, error => {
-        this.notification.open('Oooops!Something happened!Try again later!');
-      })
+  onEdit(product: Product) {
+    this.productsService
+      .updateProduct(product, product.id)
+      .pipe(
+        switchMap(() => this.productsService.getProducts()))
+      .subscribe(products => {
+        this.allProducts = products;
+        this.updateDataSource(this.allProducts);
+        this.notification.open('Edited successfully!');
+      }, () => {
+        this.notification.open('Can not edit this item! Try again later!')
+      });
   }
 
-  getPaginatorEvent($event: PageEvent) {
-    this.productsService.getProducts('', $event)
-      .subscribe(resp => {
-        this.productPage = resp;
-      })
+  private updateDataSource(products: Product[]) {
+    this.dataSource = new MatTableDataSource(products);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.filter = this.filterValue;
+    this.dataSource._updateChangeSubscription();
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.filterValue = filterValue;
+    this.dataSource.filter = filterValue;
   }
 }

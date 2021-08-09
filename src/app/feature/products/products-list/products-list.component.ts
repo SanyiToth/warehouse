@@ -4,6 +4,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 import {AuthService} from "../../../shared/auth/auth.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-products-list',
@@ -13,8 +14,9 @@ import {AuthService} from "../../../shared/auth/auth.service";
 export class ProductsListComponent implements OnInit {
 
 
-  @Input() products!: Product[];
-  @Output() dataToParent = new EventEmitter();
+  @Input() dataSource!: MatTableDataSource<Product>
+  @Output() updatedProduct = new EventEmitter<Product>();
+  @Output() deletedProduct = new EventEmitter<number>();
   displayedColumns!: string[];
   isLoggedIn!: boolean;
 
@@ -26,14 +28,12 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.displayedColumns = ["name", "width", "length", "date", "actions"];
     this.isLoggedIn = this.auth.isLoggedIn();
-
   }
 
   getDeletedElement($event: Product) {
-    this.dataToParent.emit($event);
+    this.updatedProduct.emit($event);
   }
 
 
@@ -46,7 +46,7 @@ export class ProductsListComponent implements OnInit {
     this.dialogRefConfirm = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     this.dialogRefConfirm.afterClosed()
       .subscribe(confirmDialogValue => {
-        if (confirmDialogValue) this.dataToParent.emit(element.id);
+        if (confirmDialogValue) this.deletedProduct.emit(element.id);
         this.dialogRefConfirm = null;
       });
   }
@@ -64,7 +64,7 @@ export class ProductsListComponent implements OnInit {
         if (productDialogValues) {
           let newProduct: Product = productDialogValues;
           newProduct.id = element.id;
-          this.dataToParent.emit(newProduct);
+          this.updatedProduct.emit(newProduct);
         }
         this.dialogRefProduct = null;
       });
