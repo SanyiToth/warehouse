@@ -32,10 +32,6 @@ export class ProductsListComponent implements OnInit {
     this.isLoggedIn = this.auth.isLoggedIn();
   }
 
-  getDeletedElement($event: Product) {
-    this.updatedProduct.emit($event);
-  }
-
 
   openDeleteDialog(element: Product) {
     const dialogConfig = new MatDialogConfig();

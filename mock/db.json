@@ -7,29 +7,7 @@
       "id": 1
     }
   ],
-  "products": [
-    {
-      "name": "Product3",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-09T07:34:41.562Z",
-      "id": 3
-    },
-    {
-      "name": "Product4",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-09T07:57:57.511Z",
-      "id": 4
-    },
-    {
-      "name": "Product1",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-09T09:36:41.395Z",
-      "id": 5
-    }
-  ],
+  "products": [],
   "stores": [
     {
       "id": 5,
