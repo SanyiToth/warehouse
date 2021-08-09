@@ -15,7 +15,8 @@ export class ProductsListComponent implements OnInit {
 
 
   @Input() dataSource!: MatTableDataSource<Product>
-  @Output() dataToParent = new EventEmitter();
+  @Output() updatedProduct = new EventEmitter<Product>();
+  @Output() deletedProduct = new EventEmitter<number>();
   displayedColumns!: string[];
   isLoggedIn!: boolean;
 
@@ -32,7 +33,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   getDeletedElement($event: Product) {
-    this.dataToParent.emit($event);
+    this.updatedProduct.emit($event);
   }
 
 
@@ -45,7 +46,7 @@ export class ProductsListComponent implements OnInit {
     this.dialogRefConfirm = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     this.dialogRefConfirm.afterClosed()
       .subscribe(confirmDialogValue => {
-        if (confirmDialogValue) this.dataToParent.emit(element.id);
+        if (confirmDialogValue) this.deletedProduct.emit(element.id);
         this.dialogRefConfirm = null;
       });
   }
@@ -63,7 +64,7 @@ export class ProductsListComponent implements OnInit {
         if (productDialogValues) {
           let newProduct: Product = productDialogValues;
           newProduct.id = element.id;
-          this.dataToParent.emit(newProduct);
+          this.updatedProduct.emit(newProduct);
         }
         this.dialogRefProduct = null;
       });

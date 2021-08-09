@@ -9,46 +9,11 @@
   ],
   "products": [
     {
-      "name": "Product2",
+      "name": "Product 1",
       "width": 2,
       "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
-    },
-    {
-      "name": "Product2",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
-    },
-    {
-      "name": "Product2",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
-    },
-    {
-      "name": "Product2",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
-    },
-    {
-      "name": "Product2",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
-    },
-    {
-      "name": "Product2",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-07T09:52:42.030Z",
-      "id": 3
+      "date": "2021-08-09T07:23:04.284Z",
+      "id": 1
     }
   ],
   "stores": [

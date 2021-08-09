@@ -71,25 +71,27 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
       })
   }
 
-  applyEditOrDelete($event: Product | number) {
-    if (typeof $event === 'number') {
-      this.deletedElementId = $event;
-      this.productsService
-        .deleteProduct(this.deletedElementId)
-        .pipe(
-          switchMap(() => this.productsService.getProducts()))
-        .subscribe(products => {
-          this.dataSource = new MatTableDataSource(products);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.filter = this.filterValue;
-          this.dataSource._updateChangeSubscription();
 
-        }, () => {
-          this.notification.open('Can not load the list!')
-        });
-    } else {
+  onDelete(productId: number) {
+    this.deletedElementId = productId;
+    this.productsService
+      .deleteProduct(this.deletedElementId)
+      .pipe(
+        switchMap(() => this.productsService.getProducts()))
+      .subscribe(products => {
+        this.dataSource = new MatTableDataSource(products);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.filter = this.filterValue;
+        this.dataSource._updateChangeSubscription();
+
+      }, () => {
+        this.notification.open('Can not load the list!')
+      });
+  }
+
+  onEdit(product: Product) {
       this.productsService
-        .updateProduct($event, $event.id)
+        .updateProduct(product, product.id)
         .pipe(
           switchMap(() => this.productsService.getProducts()))
         .subscribe(products => {
@@ -100,7 +102,7 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
         }, () => {
           this.notification.open('Can not load the list!')
         });
-    }
+
   }
 
   applyFilter(filterValue: string) {

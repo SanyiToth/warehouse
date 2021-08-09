@@ -9,7 +9,7 @@ import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 export class ProductsSearchEngineComponent  {
 
 
-  @Output() dataToParent = new EventEmitter<string>();
+  @Output() filterValue = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) {
   }
@@ -24,6 +24,6 @@ export class ProductsSearchEngineComponent  {
   }
 
   onSearch() {
-    this.dataToParent.emit(this.name?.value);
+    this.filterValue.emit(this.name?.value);
   }
 }
