@@ -2,12 +2,12 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {map, switchMap, tap} from "rxjs/operators";
+import { switchMap, tap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
