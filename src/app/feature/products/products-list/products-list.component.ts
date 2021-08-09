@@ -37,7 +37,7 @@ export class ProductsListComponent implements OnInit {
   }
 
 
-  onDelete(element: Product) {
+  openDeleteDialog(element: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = {
@@ -52,7 +52,7 @@ export class ProductsListComponent implements OnInit {
   }
 
 
-  onEdit(element: Product) {
+  openEditDialog(element: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.data = {

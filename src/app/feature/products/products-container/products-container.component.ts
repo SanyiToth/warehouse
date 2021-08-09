@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import { switchMap, tap} from "rxjs/operators";
+import {switchMap, tap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
@@ -17,11 +17,9 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
-  dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product>;
+  dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product> | null;
   dataSource!: MatTableDataSource<Product>;
-  newProduct!: Product;
   allProducts!: Product[];
-  deletedElementId!: number;
   isLoggedIn!: boolean;
   filterValue!: string;
 
@@ -46,36 +44,37 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  onAddNew() {
+  openAddNewDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     this.dialogRefProduct = this.dialog.open(ProductDialogComponent, dialogConfig);
-    this.dialogRefProduct.afterClosed()
+    this.dialogRefProduct
+      .afterClosed()
+      .subscribe(productDialogValues => {
+        if (productDialogValues) {
+          productDialogValues.date = new Date().toISOString();
+          this.onAdd(productDialogValues);
+        }
+      });
+  }
+
+  onAdd(newProduct: Product) {
+    this.productsService
+      .saveProduct(newProduct)
       .pipe(
-        tap(dialogValues => {
-            if (dialogValues) {
-              this.newProduct = dialogValues;
-              this.newProduct.date = new Date()
-                .toISOString();
-            }
-          }
-        ),
-        switchMap(() => this.productsService.saveProduct(this.newProduct)))
-      .subscribe(newProduct => {
-        this.allProducts = [...this.allProducts, newProduct];
+        switchMap(() => this.productsService.getProducts()))
+      .subscribe(products => {
+        this.allProducts = products;
         this.updateDataSource(this.allProducts);
         this.notification.open('Saved successfully!');
       }, () => {
         this.notification.open('Can not save this item! Try again later!')
       });
-
   }
 
-
   onDelete(productId: number) {
-    this.deletedElementId = productId;
     this.productsService
-      .deleteProduct(this.deletedElementId)
+      .deleteProduct(productId)
       .pipe(
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {

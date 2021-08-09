@@ -8,11 +8,11 @@
             <mat-icon>settings</mat-icon>
           </button>
           <mat-menu #settingsMenu="matMenu">
-            <button (click)="onEdit(element)" mat-menu-item>
+            <button (click)="openEditDialog(element)" mat-menu-item>
               <mat-icon>edit</mat-icon>
               <span>Edit</span>
             </button>
-            <button mat-menu-item (click)="onDelete(element)">
+            <button mat-menu-item (click)="openDeleteDialog(element)">
               <mat-icon>delete</mat-icon>
               <span>Delete</span></button>
           </mat-menu>

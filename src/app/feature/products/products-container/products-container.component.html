@@ -9,7 +9,7 @@
                      (deletedProduct)="onDelete($event)">
 
   </app-products-list>
-  <button mat-raised-button [disabled]="!isLoggedIn" (click)="onAddNew()" color="primary" type="button">
+  <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
     Add new
     <mat-icon>add</mat-icon>
   </button>
