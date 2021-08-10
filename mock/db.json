@@ -58,6 +58,13 @@
       "address": "lorem ipsum 33",
       "width": 35,
       "length": 45
+    },
+    {
+      "storeId": null,
+      "address": "sasa",
+      "length": 2,
+      "width": 2,
+      "id": 7
     }
   ]
 }
