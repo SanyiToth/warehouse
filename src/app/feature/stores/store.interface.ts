@@ -1,6 +1,5 @@
 export interface Store {
-  id?: number;
-  storeId: string;
+  id: string;
   address: string;
   length: number;
   width: number;

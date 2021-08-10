@@ -43,7 +43,7 @@ export class StoresContainerComponent implements OnInit {
       .afterClosed()
       .subscribe(storeDialogValues => {
         if (storeDialogValues) {
-          storeDialogValues.storeId = StoresContainerComponent.generateStoreId(6);
+          storeDialogValues.id = StoresContainerComponent.generateStoreId(6);
           this.onAdd(storeDialogValues);
         }
       });

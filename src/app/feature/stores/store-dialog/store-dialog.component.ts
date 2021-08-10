@@ -24,7 +24,7 @@ export class StoreDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.store) {
-      this.storeId?.setValue(this.store.storeId);
+      this.storeId?.setValue(this.store.id);
       this.address?.setValue(this.store.address);
       this.width?.setValue(this.store.width);
       this.length?.setValue(this.store.length);
