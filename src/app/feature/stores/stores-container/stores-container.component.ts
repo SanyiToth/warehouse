@@ -7,6 +7,7 @@ import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
 import {switchMap} from "rxjs/operators";
 import {StoresService} from "../../../shared/services/stores/stores.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-stores-container',
@@ -20,6 +21,7 @@ export class StoresContainerComponent implements OnInit {
 
   isLoggedIn!: boolean;
   filterValue!: string;
+  private paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
@@ -65,8 +67,8 @@ export class StoresContainerComponent implements OnInit {
 
   private updateStoresDataSource(stores: Store[]) {
     this.dataSource = new MatTableDataSource(stores);
-    /*    this.dataSource.paginator = this.paginator;
-        this.dataSource.filter = this.filterValue;*/
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.filter = this.filterValue;
     this.dataSource._updateChangeSubscription();
   }
 
@@ -115,5 +117,9 @@ export class StoresContainerComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.filterValue = filterValue;
     this.dataSource.filter = filterValue;
+  }
+
+  applyPaginator(paginator: MatPaginator) {
+    this.paginator = paginator;
   }
 }

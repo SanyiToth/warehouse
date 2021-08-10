@@ -15,6 +15,11 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
+
+  <app-paginator
+    [dataSource]="dataSource"
+    (paginatorEventToParent)="applyPaginator($event)">
+  </app-paginator>
 </div>
 
 
