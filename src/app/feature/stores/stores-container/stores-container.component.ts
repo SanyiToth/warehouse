@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "../store.interface";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-stores-container',
@@ -9,12 +10,14 @@ import {Store} from "../store.interface";
 })
 export class StoresContainerComponent implements OnInit {
   allStores!: Store[];
+  dataSource!: MatTableDataSource<Store>;
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
+    this.dataSource = new MatTableDataSource(this.allStores);
   }
 
 }
