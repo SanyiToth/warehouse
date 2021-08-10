@@ -39,7 +39,6 @@ import {PaginatorModule} from "../../shared/paginator/paginator.module";
     MatPaginatorModule
   ],
   exports: [
-    ProductsContainerComponent,
     ProductsListComponent,
     ProductDialogComponent]
 })

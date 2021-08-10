@@ -18,7 +18,7 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product> | null;
   dataSource!: MatTableDataSource<Product>;
-  static allProducts: Product[];
+  allProducts!: Product[];
   isLoggedIn!: boolean;
   filterValue!: string;
   private paginator!: MatPaginator;
@@ -33,8 +33,8 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    ProductsContainerComponent.allProducts = this.route.snapshot.data.products;
-    this.dataSource = new MatTableDataSource(ProductsContainerComponent.allProducts);
+   this.allProducts = this.route.snapshot.data.products;
+    this.dataSource = new MatTableDataSource(this.allProducts);
   }
 
   ngAfterViewInit() {
@@ -62,8 +62,8 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
       .pipe(
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
-        ProductsContainerComponent.allProducts = products;
-        this.updateProductsDataSource(ProductsContainerComponent.allProducts);
+        this.allProducts = products;
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Saved successfully!');
       }, () => {
         this.notification.open('Can not save this item! Try again later!')
@@ -76,8 +76,8 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
       .pipe(
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
-        ProductsContainerComponent.allProducts = products;
-        this.updateProductsDataSource(ProductsContainerComponent.allProducts);
+        this.allProducts = products;
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Deleted successfully!');
       }, () => {
         this.notification.open('Can not delete this item! Try again later!')
@@ -90,8 +90,8 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
       .pipe(
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
-        ProductsContainerComponent.allProducts = products;
-        this.updateProductsDataSource(ProductsContainerComponent.allProducts);
+       this.allProducts = products;
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Edited successfully!');
       }, () => {
         this.notification.open('Can not edit this item! Try again later!')
