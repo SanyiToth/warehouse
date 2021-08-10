@@ -11,13 +11,16 @@ import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
   styleUrls: ['./stores-list.component.scss']
 })
 export class StoresListComponent implements OnInit {
-  @Input() dataSource!: MatTableDataSource<Store>
+
   displayedColumns!: string[];
+
+  @Input() dataSource!: MatTableDataSource<Store>
   @Input() isLoggedIn!: boolean;
   @Output() updatedStore = new EventEmitter<Store>();
-
+  @Output() deletedStore = new EventEmitter<string>();
   dialogRefConfirm!: MatDialogRef<ConfirmDialogComponent> | null;
   dialogRefStore!: MatDialogRef<StoreDialogComponent> | null;
+
 
   constructor(private dialog: MatDialog) {
   }
@@ -45,6 +48,18 @@ export class StoresListComponent implements OnInit {
 
 
   openDeleteDialog(element: Store) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.data = {
+      element: element
+    };
+    this.dialogRefConfirm = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+    this.dialogRefConfirm.afterClosed()
+      .subscribe(confirmDialogValue => {
+        if (confirmDialogValue) this.deletedStore.emit(element.id);
+        this.dialogRefConfirm = null;
+      });
+
 
   }
 

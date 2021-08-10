@@ -17,7 +17,7 @@ export class ConfirmDialogComponent implements OnInit {
   ngOnInit(): void {
     this.data.element.name ?
       this.confirmMessage = `Are you sure you want to delete '${this.data.element.name}'?` :
-      this.confirmMessage = `Are you sure you want to delete '${this.data.element.storeId}'?`
+      this.confirmMessage = `Are you sure you want to delete '${this.data.element.id}'?`
   }
 
 }

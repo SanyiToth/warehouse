@@ -19,7 +19,7 @@ export class StoresService {
     return this.http.get<Store[]>(environment.API_URL + StoresService.PATH);
   }
 
-  deleteStore(id: number | undefined): Observable<Store[]> {
+  deleteStore(id: string | undefined): Observable<Store[]> {
     return this.http.delete<Store[]>(environment.API_URL + StoresService.PATH + `/${id}`);
   }
 
