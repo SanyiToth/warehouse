@@ -15,7 +15,7 @@ export class ProductDialogComponent implements OnInit {
   }
 
   productForm: FormGroup = this.fb.group({
-    searchBox: [null, [Validators.required, Validators.maxLength(50)]],
+    name: [null, [Validators.required, Validators.maxLength(50)]],
     width: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
     length: [null, [Validators.required, Validators.min(1), Validators.max(5)]]
   })
