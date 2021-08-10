@@ -9,7 +9,7 @@
       <mat-form-field>
         <input type="text" autofocus matInput placeholder="Address" formControlName="address">
         <mat-error *ngIf="address?.invalid && !address?.value && address?.touched">
-          Please fill the product name!
+          Please fill the store address!
         </mat-error>
       </mat-form-field>
     </p>
@@ -17,7 +17,7 @@
       <mat-form-field>
         <input type="number" min="1" max="5" autofocus matInput placeholder="Length" formControlName="length">
         <mat-error *ngIf="length?.invalid && !length?.value && length?.touched">
-          Please choose the product length!
+          Please choose the store length!
         </mat-error>
       </mat-form-field>
     </p>
@@ -25,7 +25,7 @@
       <mat-form-field>
         <input type="number" min="1" max="5" autofocus matInput placeholder="Width" formControlName="width">
         <mat-error *ngIf="width?.invalid && !width?.value && width?.touched">
-          Please choose the product width!
+          Please choose the store width!
         </mat-error>
       </mat-form-field>
     </p>
