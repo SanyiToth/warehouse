@@ -96,4 +96,16 @@ export class StoresContainerComponent implements OnInit {
       });
   }
 
+  onDelete(storeId: string) {
+    this.storesService.deleteStore(storeId)
+      .pipe(
+        switchMap(() => this.storesService.getStores()))
+      .subscribe(stores => {
+        this.allStores = stores;
+        this.updateStoresDataSource(this.allStores);
+        this.notification.open('Deleted successfully!');
+      }, () => {
+        this.notification.open('Can not delete this item! Try again later!')
+      });
+  }
 }
