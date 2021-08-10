@@ -12,22 +12,22 @@ export class StoreDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<StoreDialogComponent>,
               private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public store: Store) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   storeForm: FormGroup = this.fb.group({
-    storeId: [{value: null, disabled: false}],
+    storeId: [{value: null, disabled: true}],
     address: [null, [Validators.required, Validators.maxLength(50)]],
     length: [null, [Validators.required, Validators.min(1), Validators.max(5)]],
     width: [null, [Validators.required, Validators.min(1), Validators.max(5)]]
   })
 
   ngOnInit(): void {
-    if (this.store) {
-      this.storeId?.setValue(this.store.id);
-      this.address?.setValue(this.store.address);
-      this.width?.setValue(this.store.width);
-      this.length?.setValue(this.store.length);
+    if (this.data) {
+      this.storeId?.setValue(this.data.element.id);
+      this.address?.setValue(this.data.element.address);
+      this.width?.setValue(this.data.element.width);
+      this.length?.setValue(this.data.element.length);
     }
   }
 
