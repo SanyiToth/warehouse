@@ -1,14 +1,14 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {ProductDialogComponent} from "../../product-dialog/product-dialog.component";
-import {Product} from "../../product.interface";
+import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
+import {Product} from "../product.interface";
 
 @Component({
-  selector: 'app-add-new-btn',
-  templateUrl: './add-new-btn.component.html',
-  styleUrls: ['./add-new-btn.component.css']
+  selector: 'products-add-new',
+  templateUrl: './products-add-new.component.html',
+  styleUrls: ['./products-add-new.component.scss']
 })
-export class AddNewBtnComponent {
+export class ProductsAddNewComponent {
 
   @Input() isLoggedIn!: boolean;
   @Output() dialogValue = new EventEmitter<Product>();

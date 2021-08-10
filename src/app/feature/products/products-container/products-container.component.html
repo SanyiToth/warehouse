@@ -1,5 +1,7 @@
 <div class="products-container">
-  <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
+  <app-header
+    (isLoggedInStatus)="applyLoggedInStatus($event)">
+  </app-header>
   <app-filter
     (filterValue)="applyFilter($event)">
   </app-filter>
@@ -9,7 +11,10 @@
     (updatedProduct)="onEdit($event)"
     (deletedProduct)="onDelete($event)">
   </app-products-list>
-  <app-add-new-btn [isLoggedIn]="isLoggedIn" (dialogValue)="onAdd($event)"></app-add-new-btn>
+  <products-add-new
+    [isLoggedIn]="isLoggedIn"
+    (dialogValue)="onAdd($event)">
+  </products-add-new>
   <app-paginator
     (paginatorEventToParent)="applyPaginator($event)">
   </app-paginator>
