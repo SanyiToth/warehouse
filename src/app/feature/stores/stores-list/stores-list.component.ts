@@ -16,7 +16,7 @@ export class StoresListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.displayedColumns = ["storeID", "address", "length", "width", "actions"];
+    this.displayedColumns = ["storeId", "address", "length", "width", "actions"];
   }
 
   openEditDialog(element: Store) {
