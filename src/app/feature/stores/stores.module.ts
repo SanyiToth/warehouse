@@ -15,6 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FilterModule} from "../../shared/filter/filter.module";
 import {PaginatorModule} from "../../shared/paginator/paginator.module";
 import {MatCardModule} from "@angular/material/card";
+import { StoresSizeCalculatorComponent } from './stores-size-calculator/stores-size-calculator.component';
 
 
 
@@ -22,7 +23,8 @@ import {MatCardModule} from "@angular/material/card";
   declarations: [
     StoresContainerComponent,
     StoresListComponent,
-    StoreDialogComponent
+    StoreDialogComponent,
+    StoresSizeCalculatorComponent
   ],
   imports: [
     CommonModule,
