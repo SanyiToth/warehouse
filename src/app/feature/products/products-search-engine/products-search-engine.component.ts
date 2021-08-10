@@ -15,15 +15,15 @@ export class ProductsSearchEngineComponent  {
   }
 
   searchEngineForm: FormGroup = this.fb.group({
-    name: [null]
+    searchBox: [null]
   })
 
 
-  get name(): AbstractControl | null {
-    return this.searchEngineForm.get('name');
+  get searchBox(): AbstractControl | null {
+    return this.searchEngineForm.get('searchBox');
   }
 
   onSearch() {
-    this.filterValue.emit(this.name?.value);
+    this.filterValue.emit(this.searchBox?.value);
   }
 }
