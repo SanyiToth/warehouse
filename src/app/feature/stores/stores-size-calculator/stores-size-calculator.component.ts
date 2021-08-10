@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Store} from "../store.interface";
 import {Product} from "../../products/product.interface";
 import {ActivatedRoute} from "@angular/router";
@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./stores-size-calculator.component.css']
 })
 export class StoresSizeCalculatorComponent implements OnInit {
-  clickedStore!: Store;
+  @Input() clickedStore!: Store;
   products!: Product[];
 
   constructor(private route: ActivatedRoute) {

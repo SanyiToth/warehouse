@@ -4,8 +4,6 @@ import {Store} from "../store.interface";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
-import {Product} from "../../products/product.interface";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-stores-list',
@@ -20,12 +18,12 @@ export class StoresListComponent implements OnInit {
   @Input() isLoggedIn!: boolean;
   @Output() updatedStore = new EventEmitter<Store>();
   @Output() deletedStore = new EventEmitter<string>();
+  @Output() clickedStore = new EventEmitter<Store>();
   dialogRefConfirm!: MatDialogRef<ConfirmDialogComponent> | null;
   dialogRefStore!: MatDialogRef<StoreDialogComponent> | null;
-  clickedStore!: Store;
+  store!: Store;
 
-  constructor(private dialog: MatDialog,
-             ) {
+  constructor(private dialog: MatDialog) {
 
   }
 
@@ -67,9 +65,8 @@ export class StoresListComponent implements OnInit {
   }
 
 
-
-
   onClick(clickedStore: Store) {
-    this.clickedStore = clickedStore;
+    this.store = clickedStore;
+    this.clickedStore.emit(this.store);
   }
 }

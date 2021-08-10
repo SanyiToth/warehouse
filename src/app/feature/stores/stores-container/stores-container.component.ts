@@ -9,7 +9,6 @@ import {StoresService} from "../../../shared/services/stores/stores.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {Product} from "../../products/product.interface";
 
 @Component({
   selector: 'app-stores-container',
@@ -25,6 +24,7 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
   isLoggedIn!: boolean;
   filterValue!: string;
   private paginator!: MatPaginator;
+  clickedStore!: Store;
 
 
   constructor(private route: ActivatedRoute,
@@ -131,5 +131,9 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
 
   applyPaginator(paginator: MatPaginator) {
     this.paginator = paginator;
+  }
+
+  applyClickedStore(clickedStore: Store) {
+    this.clickedStore = clickedStore;
   }
 }

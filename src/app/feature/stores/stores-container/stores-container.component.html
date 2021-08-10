@@ -6,6 +6,7 @@
   <app-stores-list
     [dataSource]="dataSource"
     [isLoggedIn]="isLoggedIn"
+    (clickedStore)="applyClickedStore($event)"
     (updatedStore)="onEdit($event)"
     (deletedStore)="onDelete($event)">
   </app-stores-list>
@@ -21,7 +22,7 @@
 </div>
 
 <app-stores-size-calculator
-
+  [clickedStore]="clickedStore"
 
 
 ></app-stores-size-calculator>
