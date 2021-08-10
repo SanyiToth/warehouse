@@ -9,39 +9,39 @@
   ],
   "products": [
     {
-      "name": "Product 3",
-      "width": 3,
-      "length": 3,
-      "date": "2021-08-09T19:16:48.817Z",
+      "name": "speaker",
+      "width": 2,
+      "length": 2,
+      "date": "2021-08-10T08:02:07.592Z",
+      "id": 1
+    },
+    {
+      "name": "laptop",
+      "width": 2,
+      "length": 2,
+      "date": "2021-08-10T08:02:16.536Z",
+      "id": 2
+    },
+    {
+      "name": "printer",
+      "width": 2,
+      "length": 2,
+      "date": "2021-08-10T08:02:30.735Z",
       "id": 3
     },
     {
-      "name": "Product 4",
-      "width": 5,
-      "length": 5,
-      "date": "2021-08-09T19:17:01.929Z",
+      "name": "monitor",
+      "width": 2,
+      "length": 2,
+      "date": "2021-08-10T08:02:39.791Z",
       "id": 4
     },
     {
-      "name": "Product 5",
-      "width": 4,
-      "length": 3,
-      "date": "2021-08-09T19:17:13.323Z",
-      "id": 5
-    },
-    {
-      "name": "Product 6",
-      "width": 3,
+      "name": "lenovo",
+      "width": 2,
       "length": 2,
-      "date": "2021-08-09T19:17:23.818Z",
-      "id": 6
-    },
-    {
-      "name": "Product 7",
-      "width": 5,
-      "length": 3,
-      "date": "2021-08-09T19:18:17.443Z",
-      "id": 7
+      "date": "2021-08-10T08:02:58.510Z",
+      "id": 5
     }
   ],
   "stores": [
