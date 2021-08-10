@@ -10,7 +10,7 @@ import {Store} from "../store.interface";
 export class StoresListComponent implements OnInit {
   @Input() dataSource!: MatTableDataSource<Store>
   displayedColumns!: string[];
-  isLoggedIn!: boolean;
+  @Input() isLoggedIn!: boolean;
 
   constructor() {
   }

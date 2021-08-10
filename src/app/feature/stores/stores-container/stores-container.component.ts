@@ -11,6 +11,7 @@ import {MatTableDataSource} from "@angular/material/table";
 export class StoresContainerComponent implements OnInit {
   allStores!: Store[];
   dataSource!: MatTableDataSource<Store>;
+  isLoggedIn!: boolean;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -20,4 +21,7 @@ export class StoresContainerComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.allStores);
   }
 
+  applyLoggedInStatus(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn;
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {CurrentUserService} from "../services/current-user/current-user.service";
 import {User} from "../auth/auth.interface";
 import {AuthService} from "../auth/auth.service";
@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ]
   loggedInUser!: User;
   isLoggedIn!: boolean;
+  @Output() isLoggedInStatus = new EventEmitter<boolean>();
 
   constructor(private currentUser: CurrentUserService,
               private authService: AuthService,
@@ -48,6 +49,7 @@ export class HeaderComponent implements OnInit {
   authorization() {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.loggedInUser = this.currentUser.getLoggedInUser();
+    this.isLoggedInStatus.emit(this.isLoggedIn);
   }
 
 

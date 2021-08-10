@@ -3,7 +3,6 @@ import {Product} from "../product.interface";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {AuthService} from "../../../shared/auth/auth.service";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
@@ -15,21 +14,19 @@ export class ProductsListComponent implements OnInit {
 
 
   @Input() dataSource!: MatTableDataSource<Product>
+  @Input() isLoggedIn!: boolean;
   @Output() updatedProduct = new EventEmitter<Product>();
   @Output() deletedProduct = new EventEmitter<number>();
-  displayedColumns!: string[];
-  isLoggedIn!: boolean;
 
+  displayedColumns!: string[];
   dialogRefConfirm!: MatDialogRef<ConfirmDialogComponent> | null;
   dialogRefProduct!: MatDialogRef<ProductDialogComponent> | null;
 
-  constructor(private auth: AuthService,
-              private dialog: MatDialog) {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.displayedColumns = ["name", "width", "length", "date", "actions"];
-    this.isLoggedIn = this.auth.isLoggedIn();
   }
 
 

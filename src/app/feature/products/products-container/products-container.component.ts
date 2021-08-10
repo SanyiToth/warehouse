@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
 import {switchMap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
 import {MatPaginator} from "@angular/material/paginator";
@@ -27,7 +26,6 @@ export class ProductsContainerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              private auth: AuthService,
               private dialog: MatDialog,
               private notification: NotificationService) {
 
@@ -36,7 +34,6 @@ export class ProductsContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
-    this.isLoggedIn = this.auth.isLoggedIn();
     this.dataSource = new MatTableDataSource(this.allProducts);
   }
 
@@ -114,5 +111,9 @@ export class ProductsContainerComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.filterValue = filterValue;
     this.dataSource.filter = filterValue;
+  }
+
+  applyLoggedInStatus(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn;
   }
 }
