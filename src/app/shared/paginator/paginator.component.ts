@@ -1,17 +1,16 @@
 import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
-import {Product} from "../product.interface";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 
 
 @Component({
-  selector: 'app-products-paginator',
-  templateUrl: './products-paginator.component.html',
-  styleUrls: ['./products-paginator.component.css']
+  selector: 'app-paginator',
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.scss']
 })
-export class ProductsPaginatorComponent implements AfterViewInit {
+export class PaginatorComponent implements AfterViewInit {
 
-  @Input() dataSource!: MatTableDataSource<Product>;
+  @Input() dataSource!: MatTableDataSource<any>;
   @Output() paginatorEventToParent = new EventEmitter<MatPaginator>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

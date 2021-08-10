@@ -14,7 +14,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
 import {FilterComponent} from '../../shared/filter/filter.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import {ProductsPaginatorComponent} from './products-paginator/products-paginator.component';
+import {PaginatorComponent} from '../../shared/paginator/paginator.component';
 import {FilterModule} from "../../shared/filter/filter.module";
 
 
@@ -23,7 +23,7 @@ import {FilterModule} from "../../shared/filter/filter.module";
     ProductsContainerComponent,
     ProductsListComponent,
     ProductDialogComponent,
-    ProductsPaginatorComponent
+    PaginatorComponent
   ],
   imports: [
     CommonModule,

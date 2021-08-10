@@ -1,7 +1,12 @@
-export interface Product {
+interface WareHouseData {
+
+
+}
+
+export interface Product extends WareHouseData {
   id?: number;
   name: string;
-  width:number;
+  width: number;
   length: number;
   date: string;
 }
