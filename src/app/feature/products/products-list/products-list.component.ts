@@ -26,7 +26,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.displayedColumns = ["name", "width", "length", "date", "actions"];
+    this.displayedColumns = ["name", "length", "width", "date", "actions"];
   }
 
 
