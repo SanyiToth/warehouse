@@ -82,4 +82,18 @@ export class StoresContainerComponent implements OnInit {
         this.notification.open('Can not save this item! Try again later!')
       });
   }
+
+  onEdit(store: Store) {
+    this.storesService.updateStore(store, store.id)
+      .pipe(
+        switchMap(() => this.storesService.getStores()))
+      .subscribe(stores => {
+        this.allStores = stores;
+        this.updateStoresDataSource(this.allStores);
+        this.notification.open('Edited successfully!');
+      }, () => {
+        this.notification.open('Can not edit this item! Try again later!')
+      });
+  }
+
 }

@@ -27,7 +27,7 @@ export class StoresService {
     return this.http.post<Store>(environment.API_URL + StoresService.PATH, newStore);
   }
 
-  patchStore(store: Store, id: number): Observable<Store> {
+  updateStore(store: Store, id: string): Observable<Store> {
     return this.http.patch<Store>(environment.API_URL + StoresService.PATH + `/${id}`, store);
   }
 

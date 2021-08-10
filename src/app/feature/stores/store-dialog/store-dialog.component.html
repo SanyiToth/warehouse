@@ -1,6 +1,6 @@
 <div mat-dialog-content>
   <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
-    <p *ngIf="store">
+    <p *ngIf="data?.element">
       <mat-form-field>
         <input type="text" autofocus matInput formControlName="storeId">
       </mat-form-field>

@@ -3,6 +3,7 @@
   <app-stores-list
     [dataSource]="dataSource"
     [isLoggedIn]="isLoggedIn"
+    (updatedStore)="onEdit($event)"
   ></app-stores-list>
   <div class="add-new-btn">
     <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
