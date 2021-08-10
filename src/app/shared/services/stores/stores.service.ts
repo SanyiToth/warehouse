@@ -23,11 +23,13 @@ export class StoresService {
     return this.http.delete<Store[]>(environment.API_URL + StoresService.PATH + `/${id}`);
   }
 
-  postStore(store: Store): Observable<Store> {
-    return this.http.post<Store>(environment.API_URL + StoresService.PATH, store);
+  saveStore(newStore: Store): Observable<Store> {
+    return this.http.post<Store>(environment.API_URL + StoresService.PATH, newStore);
   }
 
   patchStore(store: Store, id: number): Observable<Store> {
     return this.http.patch<Store>(environment.API_URL + StoresService.PATH + `/${id}`, store);
   }
+
+
 }

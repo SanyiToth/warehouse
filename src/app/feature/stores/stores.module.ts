@@ -7,13 +7,15 @@ import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
+import { StoreDialogComponent } from './store-dialog/store-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     StoresContainerComponent,
-    StoresListComponent
+    StoresListComponent,
+    StoreDialogComponent
   ],
   imports: [
     CommonModule,
