@@ -10,7 +10,7 @@ import {MatTableDataSource} from "@angular/material/table";
 @Component({
   selector: 'app-products-container',
   templateUrl: './products-container.component.html',
-  styleUrls: ['./products-container.component.css']
+  styleUrls: ['./products-container.component.scss']
 })
 export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
