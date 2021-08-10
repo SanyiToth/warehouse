@@ -19,7 +19,7 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
 
   dataSource!: MatTableDataSource<Store>;
-  dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
+
 
   isLoggedIn!: boolean;
   filterValue!: string;
@@ -48,22 +48,8 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = isLoggedIn;
   }
 
-  openAddNewDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    this.dialogRefStore = this.dialog.open(StoreDialogComponent, dialogConfig);
-    this.dialogRefStore
-      .afterClosed()
-      .subscribe(storeDialogValues => {
-        if (storeDialogValues) {
-          storeDialogValues.id = StoresContainerComponent.generateStoreId(6);
-          this.onAdd(storeDialogValues);
-        }
-      });
-  }
 
-
-  private static generateStoreId(length: number) {
+   static generateStoreId(length: number) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let charactersLength = characters.length;

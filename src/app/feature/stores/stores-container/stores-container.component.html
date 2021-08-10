@@ -1,5 +1,6 @@
 <div class="stores-container">
-  <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
+  <app-header
+    (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
   <app-filter
     (filterValue)="applyFilter($event)">
   </app-filter>
@@ -10,19 +11,15 @@
     (updatedStore)="onEdit($event)"
     (deletedStore)="onDelete($event)">
   </app-stores-list>
-  <div class="add-new-btn">
-    <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
-      Add new
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+  <app-stores-add-new
+    [isLoggedIn]="isLoggedIn"
+    (dialogValue)="onAdd($event)"></app-stores-add-new>
   <app-paginator
     (paginatorEventToParent)="applyPaginator($event)">
   </app-paginator>
+  <app-stores-size-calculator
+    [clickedStore]="clickedStore"
+  ></app-stores-size-calculator>
 </div>
 
-<app-stores-size-calculator
-  [clickedStore]="clickedStore"
 
-
-></app-stores-size-calculator>

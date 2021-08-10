@@ -17,6 +17,7 @@ import {PaginatorModule} from "../../shared/paginator/paginator.module";
 import {MatCardModule} from "@angular/material/card";
 import { StoresSizeCalculatorComponent } from './stores-size-calculator/stores-size-calculator.component';
 import {MatChipsModule} from "@angular/material/chips";
+import { StoresAddNewComponent } from './stores-add-new/stores-add-new.component';
 
 
 
@@ -25,7 +26,8 @@ import {MatChipsModule} from "@angular/material/chips";
     StoresContainerComponent,
     StoresListComponent,
     StoreDialogComponent,
-    StoresSizeCalculatorComponent
+    StoresSizeCalculatorComponent,
+    StoresAddNewComponent
   ],
     imports: [
         CommonModule,
