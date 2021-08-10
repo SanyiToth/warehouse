@@ -8,6 +8,8 @@ import {switchMap} from "rxjs/operators";
 import {StoresService} from "../../../shared/services/stores/stores.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {MatPaginator} from "@angular/material/paginator";
+import {ProductsService} from "../../../shared/services/products/products.service";
+import {Product} from "../../products/product.interface";
 
 @Component({
   selector: 'app-stores-container',
@@ -23,16 +25,26 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
   filterValue!: string;
   private paginator!: MatPaginator;
 
+  products!: Product[];
+
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
               private storesService: StoresService,
+              private productsService: ProductsService,
               private notification: NotificationService) {
   }
 
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
+
     this.dataSource = new MatTableDataSource(this.allStores);
+
+    this.productsService.getProducts()
+      .subscribe(products => {
+        this.products = products;
+      })
   }
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

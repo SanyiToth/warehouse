@@ -4,6 +4,7 @@
     (filterValue)="applyFilter($event)">
   </app-filter>
   <app-stores-list
+    [products]="products"
     [dataSource]="dataSource"
     [isLoggedIn]="isLoggedIn"
     (updatedStore)="onEdit($event)"
@@ -15,7 +16,6 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
-
   <app-paginator
     (paginatorEventToParent)="applyPaginator($event)">
   </app-paginator>

@@ -4,6 +4,7 @@ import {Store} from "../store.interface";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
+import {Product} from "../../products/product.interface";
 
 @Component({
   selector: 'app-stores-list',
@@ -13,14 +14,14 @@ import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
 export class StoresListComponent implements OnInit {
 
   displayedColumns!: string[];
-
+  @Input() products!: Product[];
   @Input() dataSource!: MatTableDataSource<Store>
   @Input() isLoggedIn!: boolean;
   @Output() updatedStore = new EventEmitter<Store>();
   @Output() deletedStore = new EventEmitter<string>();
   dialogRefConfirm!: MatDialogRef<ConfirmDialogComponent> | null;
   dialogRefStore!: MatDialogRef<StoreDialogComponent> | null;
-
+  clickedStore!: Store;
 
   constructor(private dialog: MatDialog) {
   }
@@ -59,8 +60,21 @@ export class StoresListComponent implements OnInit {
         if (confirmDialogValue) this.deletedStore.emit(element.id);
         this.dialogRefConfirm = null;
       });
-
-
   }
 
+
+  isStoreBigEnough(store: Store) {
+    let areaOfAllProducts = 0;
+    this.products
+      .forEach(item => {
+        areaOfAllProducts += item.length * item.width;
+      })
+    const areaOfClickedStore = store.length * store.width;
+    const result = areaOfClickedStore / areaOfAllProducts;
+    return result >= 1;
+  }
+
+  onClick(clickedStore: Store) {
+    this.clickedStore = clickedStore;
+  }
 }

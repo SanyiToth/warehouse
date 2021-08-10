@@ -14,6 +14,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FilterModule} from "../../shared/filter/filter.module";
 import {PaginatorModule} from "../../shared/paginator/paginator.module";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -35,7 +36,8 @@ import {PaginatorModule} from "../../shared/paginator/paginator.module";
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class StoresModule { }

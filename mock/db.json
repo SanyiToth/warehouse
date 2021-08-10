@@ -9,13 +9,6 @@
   ],
   "products": [
     {
-      "name": "speaker",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-10T08:02:07.592Z",
-      "id": 1
-    },
-    {
       "name": "laptop",
       "width": 2,
       "length": 2,
@@ -44,13 +37,6 @@
       "id": 5
     },
     {
-      "name": "sasa",
-      "width": 1,
-      "length": 2,
-      "date": "2021-08-10T12:07:51.274Z",
-      "id": 6
-    },
-    {
       "name": "dsd",
       "width": 2,
       "length": 2,
@@ -61,20 +47,14 @@
   "stores": [
     {
       "address": "lőpor utca 25",
-      "length": 2,
-      "width": 2,
+      "length": 5,
+      "width": 5,
       "id": "vdufQX"
     },
     {
-      "address": "blaha lujza 33",
-      "length": 3,
-      "width": 2,
-      "id": "yrBHtc"
-    },
-    {
       "address": "sddad",
-      "length": 2,
-      "width": 2,
+      "length": 5,
+      "width": 5,
       "id": "bg59SX"
     },
     {
