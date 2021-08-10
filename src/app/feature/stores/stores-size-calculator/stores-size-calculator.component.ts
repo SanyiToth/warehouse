@@ -6,10 +6,10 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'app-stores-size-calculator',
   templateUrl: './stores-size-calculator.component.html',
-  styleUrls: ['./stores-size-calculator.component.css']
+  styleUrls: ['./stores-size-calculator.component.scss']
 })
 export class StoresSizeCalculatorComponent implements OnInit {
-  @Input() clickedStore!: Store;
+  @Input() clickedStore!: Store | undefined;
   products!: Product[];
 
   constructor(private route: ActivatedRoute) {
@@ -27,5 +27,9 @@ export class StoresSizeCalculatorComponent implements OnInit {
     const areaOfClickedStore = store.length * store.width;
     const result = areaOfClickedStore / areaOfAllProducts;
     return result >= 1;
+  }
+
+  onClose() {
+    this.clickedStore = undefined;
   }
 }

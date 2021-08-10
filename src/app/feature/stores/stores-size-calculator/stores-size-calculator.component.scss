@@ -1,0 +1,25 @@
+mat-card {
+  margin: auto;
+  width: 15%;
+  padding: 0;
+}
+
+h2 {
+  padding: 5px;
+  margin: 0;
+}
+
+.fit {
+  background: green;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.doesnt-fit {
+  background: red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

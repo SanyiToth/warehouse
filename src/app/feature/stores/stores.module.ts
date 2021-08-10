@@ -16,6 +16,7 @@ import {FilterModule} from "../../shared/filter/filter.module";
 import {PaginatorModule} from "../../shared/paginator/paginator.module";
 import {MatCardModule} from "@angular/material/card";
 import { StoresSizeCalculatorComponent } from './stores-size-calculator/stores-size-calculator.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 
 
@@ -26,20 +27,21 @@ import { StoresSizeCalculatorComponent } from './stores-size-calculator/stores-s
     StoreDialogComponent,
     StoresSizeCalculatorComponent
   ],
-  imports: [
-    CommonModule,
-    HeaderModule,
-    MatTableModule,
-    MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
-    FilterModule,
-    PaginatorModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        HeaderModule,
+        MatTableModule,
+        MatIconModule,
+        MatMenuModule,
+        MatButtonModule,
+        FilterModule,
+        PaginatorModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatChipsModule
+    ]
 })
 export class StoresModule { }
