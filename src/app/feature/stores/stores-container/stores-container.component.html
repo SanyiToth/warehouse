@@ -1,8 +1,8 @@
 <div class="stores-container">
   <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
-<!--  <app-filter
+  <app-filter
     (filterValue)="applyFilter($event)">
-  </app-filter>-->
+  </app-filter>
   <app-stores-list
     [dataSource]="dataSource"
     [isLoggedIn]="isLoggedIn"

@@ -1,7 +1,7 @@
 <form [formGroup]="searchEngineForm">
   <mat-form-field class="search">
     <mat-icon matPrefix>search</mat-icon>
-    <input matInput placeholder="SearchByName" type="text" formControlName="searchBox" (keyup)="onSearch()">
+    <input matInput placeholder="Search" type="text" formControlName="searchBox" (keyup)="onSearch()">
     <mat-error>
       Please type the product name!
     </mat-error>

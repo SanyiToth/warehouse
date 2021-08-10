@@ -19,6 +19,7 @@ export class StoresContainerComponent implements OnInit {
   dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
 
   isLoggedIn!: boolean;
+  filterValue!: string;
 
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
@@ -107,5 +108,12 @@ export class StoresContainerComponent implements OnInit {
       }, () => {
         this.notification.open('Can not delete this item! Try again later!')
       });
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.filterValue = filterValue;
+    this.dataSource.filter = filterValue;
   }
 }
