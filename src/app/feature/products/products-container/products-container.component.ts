@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
@@ -14,7 +14,7 @@ import {MatTableDataSource} from "@angular/material/table";
   templateUrl: './products-container.component.html',
   styleUrls: ['./products-container.component.css']
 })
-export class ProductsContainerComponent implements OnInit {
+export class ProductsContainerComponent implements OnInit, AfterViewInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product> | null;
   dataSource!: MatTableDataSource<Product>;
@@ -35,6 +35,10 @@ export class ProductsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.allProducts = this.route.snapshot.data.products;
     this.dataSource = new MatTableDataSource(this.allProducts);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 

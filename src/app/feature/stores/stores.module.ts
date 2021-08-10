@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FilterModule} from "../../shared/filter/filter.module";
+import {PaginatorModule} from "../../shared/paginator/paginator.module";
 
 
 
@@ -30,6 +31,7 @@ import {FilterModule} from "../../shared/filter/filter.module";
     MatMenuModule,
     MatButtonModule,
     FilterModule,
+    PaginatorModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,

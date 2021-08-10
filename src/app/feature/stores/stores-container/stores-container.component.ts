@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "../store.interface";
 import {MatTableDataSource} from "@angular/material/table";
@@ -7,19 +7,21 @@ import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
 import {switchMap} from "rxjs/operators";
 import {StoresService} from "../../../shared/services/stores/stores.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-stores-container',
   templateUrl: './stores-container.component.html',
   styleUrls: ['./stores-container.component.css']
 })
-export class StoresContainerComponent implements OnInit {
+export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
   dataSource!: MatTableDataSource<Store>;
   dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
 
   isLoggedIn!: boolean;
   filterValue!: string;
+  private paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
@@ -30,6 +32,10 @@ export class StoresContainerComponent implements OnInit {
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
     this.dataSource = new MatTableDataSource(this.allStores);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   applyLoggedInStatus(isLoggedIn: boolean) {
@@ -65,8 +71,8 @@ export class StoresContainerComponent implements OnInit {
 
   private updateStoresDataSource(stores: Store[]) {
     this.dataSource = new MatTableDataSource(stores);
-    /*    this.dataSource.paginator = this.paginator;
-        this.dataSource.filter = this.filterValue;*/
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.filter = this.filterValue;
     this.dataSource._updateChangeSubscription();
   }
 
@@ -115,5 +121,9 @@ export class StoresContainerComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.filterValue = filterValue;
     this.dataSource.filter = filterValue;
+  }
+
+  applyPaginator(paginator: MatPaginator) {
+    this.paginator = paginator;
   }
 }

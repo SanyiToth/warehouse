@@ -1,7 +1,9 @@
+
+
 export interface Product {
   id?: number;
   name: string;
-  width:number;
+  width: number;
   length: number;
   date: string;
 }
