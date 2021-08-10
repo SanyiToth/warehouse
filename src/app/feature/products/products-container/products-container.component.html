@@ -1,20 +1,21 @@
 <div class="products-container">
-  <app-header></app-header>
+  <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
   <app-products-search-engine
     (filterValue)="applyFilter($event)">
-
   </app-products-search-engine>
-  <app-products-list [dataSource]="dataSource"
-                     (updatedProduct)="onEdit($event)"
-                     (deletedProduct)="onDelete($event)">
-
+  <app-products-list
+    [isLoggedIn]="isLoggedIn"
+    [dataSource]="dataSource"
+    (updatedProduct)="onEdit($event)"
+    (deletedProduct)="onDelete($event)">
   </app-products-list>
-
-  <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
-    Add new
-    <mat-icon>add</mat-icon>
-  </button>
-
-  <app-products-paginator [dataSource]="dataSource"
-                          (paginatorEventToParent)="applyPaginator($event)"></app-products-paginator>
+  <div class="add-new-btn">
+    <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
+      Add new
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <app-products-paginator
+    [dataSource]="dataSource"
+    (paginatorEventToParent)="applyPaginator($event)"></app-products-paginator>
 </div>

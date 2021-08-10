@@ -1,12 +1,9 @@
-
-
-
-
 <div class="stores-container">
-<app-header></app-header>
-  <p>stores-container works!</p>
-
-
+  <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
+  <app-stores-list
+    [dataSource]="dataSource"
+    [isLoggedIn]="isLoggedIn"
+  ></app-stores-list>
 </div>
 
 
