@@ -1,6 +1,5 @@
-import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, Output, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
-import {MatTableDataSource} from "@angular/material/table";
 
 
 @Component({
@@ -10,7 +9,6 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class PaginatorComponent implements AfterViewInit {
 
-  @Input() dataSource!: MatTableDataSource<any>;
   @Output() paginatorEventToParent = new EventEmitter<MatPaginator>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -21,7 +19,6 @@ export class PaginatorComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
     this.paginatorEventToParent.emit(this.paginator);
   }
 

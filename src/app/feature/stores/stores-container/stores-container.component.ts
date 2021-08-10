@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "../store.interface";
 import {MatTableDataSource} from "@angular/material/table";
@@ -14,7 +14,7 @@ import {MatPaginator} from "@angular/material/paginator";
   templateUrl: './stores-container.component.html',
   styleUrls: ['./stores-container.component.css']
 })
-export class StoresContainerComponent implements OnInit {
+export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
   dataSource!: MatTableDataSource<Store>;
   dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
@@ -32,6 +32,10 @@ export class StoresContainerComponent implements OnInit {
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
     this.dataSource = new MatTableDataSource(this.allStores);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   applyLoggedInStatus(isLoggedIn: boolean) {
