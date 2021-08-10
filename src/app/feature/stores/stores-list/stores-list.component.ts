@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {Store} from "../store.interface";
 
 @Component({
   selector: 'app-stores-list',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stores-list.component.scss']
 })
 export class StoresListComponent implements OnInit {
+  @Input() dataSource!: MatTableDataSource<Store>
+  displayedColumns!: string[];
+  isLoggedIn!: boolean;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.displayedColumns = ["storeId", "address", "length", "width", "actions"];
+  }
+
+  openEditDialog(element: Store) {
+
+  }
+
+  openDeleteDialog(element: Store) {
+
   }
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Store} from "../store.interface";
 
 @Component({
   selector: 'app-stores-container',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stores-container.component.css']
 })
 export class StoresContainerComponent implements OnInit {
+  allStores!: Store[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
+    this.allStores = this.route.snapshot.data.stores;
   }
 
 }
