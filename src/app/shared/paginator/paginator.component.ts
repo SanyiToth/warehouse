@@ -22,6 +22,7 @@ export class PaginatorComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.paginatorEventToParent.emit(this.paginator);
   }
 
   onPaginator(): void {
