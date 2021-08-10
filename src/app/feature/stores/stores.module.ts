@@ -7,13 +7,19 @@ import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
+import { StoreDialogComponent } from './store-dialog/store-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 
 @NgModule({
   declarations: [
     StoresContainerComponent,
-    StoresListComponent
+    StoresListComponent,
+    StoreDialogComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +27,11 @@ import {MatButtonModule} from "@angular/material/button";
     MatTableModule,
     MatIconModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class StoresModule { }

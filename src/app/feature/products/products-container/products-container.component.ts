@@ -59,7 +59,7 @@ export class ProductsContainerComponent implements OnInit {
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
         this.allProducts = products;
-        this.updateDataSource(this.allProducts);
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Saved successfully!');
       }, () => {
         this.notification.open('Can not save this item! Try again later!')
@@ -73,7 +73,7 @@ export class ProductsContainerComponent implements OnInit {
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
         this.allProducts = products;
-        this.updateDataSource(this.allProducts);
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Deleted successfully!');
       }, () => {
         this.notification.open('Can not delete this item! Try again later!')
@@ -87,14 +87,14 @@ export class ProductsContainerComponent implements OnInit {
         switchMap(() => this.productsService.getProducts()))
       .subscribe(products => {
         this.allProducts = products;
-        this.updateDataSource(this.allProducts);
+        this.updateProductsDataSource(this.allProducts);
         this.notification.open('Edited successfully!');
       }, () => {
         this.notification.open('Can not edit this item! Try again later!')
       });
   }
 
-  private updateDataSource(products: Product[]) {
+  private updateProductsDataSource(products: Product[]) {
     this.dataSource = new MatTableDataSource(products);
     this.dataSource.paginator = this.paginator;
     this.dataSource.filter = this.filterValue;
