@@ -15,6 +15,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {FilterModule} from "../../shared/filter/filter.module";
 import {PaginatorModule} from "../../shared/paginator/paginator.module";
+import { AddNewBtnComponent } from './products-container/add-new-btn/add-new-btn.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {PaginatorModule} from "../../shared/paginator/paginator.module";
     ProductsContainerComponent,
     ProductsListComponent,
     ProductDialogComponent,
+    AddNewBtnComponent,
   ],
   imports: [
     CommonModule,

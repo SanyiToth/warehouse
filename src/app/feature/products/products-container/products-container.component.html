@@ -9,12 +9,7 @@
     (updatedProduct)="onEdit($event)"
     (deletedProduct)="onDelete($event)">
   </app-products-list>
-  <div class="add-new-btn">
-    <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
-      Add new
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+  <app-add-new-btn [isLoggedIn]="isLoggedIn" (dialogValue)="onAdd($event)"></app-add-new-btn>
   <app-paginator
     (paginatorEventToParent)="applyPaginator($event)">
   </app-paginator>
