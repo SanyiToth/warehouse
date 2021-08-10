@@ -44,5 +44,18 @@
       "id": 5
     }
   ],
-  "stores": []
+  "stores": [
+    {
+      "address": "lőpor utca 25",
+      "length": 2,
+      "width": 2,
+      "id": "vdufQX"
+    },
+    {
+      "address": "blaha lujza 33",
+      "length": 3,
+      "width": 2,
+      "id": "yrBHtc"
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
     <p *ngIf="data?.element">
       <mat-form-field>
-        <input type="text" autofocus matInput formControlName="storeId">
+        <input type="text" autofocus placeholder="StoreId" matInput formControlName="storeId">
       </mat-form-field>
     </p>
     <p>

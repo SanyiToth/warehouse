@@ -12,9 +12,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
-import { ProductsSearchEngineComponent } from './products-search-engine/products-search-engine.component';
+import {FilterComponent} from '../../shared/filter/filter.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { ProductsPaginatorComponent } from './products-paginator/products-paginator.component';
+import {ProductsPaginatorComponent} from './products-paginator/products-paginator.component';
+import {FilterModule} from "../../shared/filter/filter.module";
 
 
 @NgModule({
@@ -22,22 +23,22 @@ import { ProductsPaginatorComponent } from './products-paginator/products-pagina
     ProductsContainerComponent,
     ProductsListComponent,
     ProductDialogComponent,
-    ProductsSearchEngineComponent,
     ProductsPaginatorComponent
   ],
-    imports: [
-        CommonModule,
-        MatTableModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        HeaderModule,
-        MatButtonModule,
-        MatIconModule,
-        MatMenuModule,
-        MatPaginatorModule
-    ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    HeaderModule,
+    MatButtonModule,
+    FilterModule,
+    MatIconModule,
+    MatMenuModule,
+    MatPaginatorModule
+  ],
   exports: [
     ProductsContainerComponent,
     ProductsListComponent,
