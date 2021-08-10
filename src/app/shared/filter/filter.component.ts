@@ -3,10 +3,10 @@ import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-products-search-engine',
-  templateUrl: './products-search-engine.component.html',
-  styleUrls: ['./products-search-engine.component.css']
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss']
 })
-export class ProductsSearchEngineComponent  {
+export class FilterComponent {
 
 
   @Output() filterValue = new EventEmitter<string>();

@@ -12,7 +12,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatMenuModule} from "@angular/material/menu";
-import { ProductsSearchEngineComponent } from './products-search-engine/products-search-engine.component';
+import { FilterComponent } from '../../shared/filter/filter.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ProductsPaginatorComponent } from './products-paginator/products-paginator.component';
 
@@ -22,7 +22,7 @@ import { ProductsPaginatorComponent } from './products-paginator/products-pagina
     ProductsContainerComponent,
     ProductsListComponent,
     ProductDialogComponent,
-    ProductsSearchEngineComponent,
+    FilterComponent,
     ProductsPaginatorComponent
   ],
     imports: [
