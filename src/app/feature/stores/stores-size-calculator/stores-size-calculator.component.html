@@ -1,19 +1,30 @@
-<mat-card *ngIf="clickedStore">
+<div *ngIf="clickedStore">
   <div *ngIf="isStoreBigEnough(clickedStore, products); then fitTpl else doesntFitTpl"></div>
   <ng-template #fitTpl>
-    <div class="fit">
-      <h2>FIT</h2>
-      <button mat-icon-button (click)="onClose()">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </div>
+    <mat-card class="fit">
+      <mat-card-header>
+        <button mat-icon-button>
+          <mat-icon (click)="onClose()">cancel</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-title>FIT</mat-card-title>
+        <mat-card-subtitle>{{clickedStore.id}}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
   </ng-template>
   <ng-template #doesntFitTpl>
-    <div class="doesnt-fit">
-      <h2>NOT FIT</h2>
-      <button mat-icon-button (click)="onClose()">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </div>
+    <mat-card class="doesnt-fit">
+      <mat-card-header>
+        <button mat-icon-button>
+          <mat-icon (click)="onClose()">cancel</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-title>NOT FIT</mat-card-title>
+        <mat-card-subtitle>{{clickedStore.id}}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
   </ng-template>
-</mat-card>
+</div>
+
