@@ -1,1 +1,9 @@
-<p>stores-size-calculator works!</p>
+<mat-card *ngIf="clickedStore">
+  <div *ngIf="isStoreBigEnough(clickedStore); then fitTpl else doesntFitTpl"></div>
+  <ng-template #fitTpl>
+    <h1 class="fit" style="background: green;text-align: center">It is fit!</h1>
+  </ng-template>
+  <ng-template #doesntFitTpl>
+    <h1 class="doesnt-fit" style="background: red;text-align: center">It does not fit!</h1>
+  </ng-template>
+</mat-card>

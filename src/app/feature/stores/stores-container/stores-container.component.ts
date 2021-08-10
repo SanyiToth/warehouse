@@ -18,6 +18,7 @@ import {Product} from "../../products/product.interface";
 })
 export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
+
   dataSource!: MatTableDataSource<Store>;
   dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
 
@@ -25,26 +26,19 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
   filterValue!: string;
   private paginator!: MatPaginator;
 
-  products!: Product[];
 
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
               private storesService: StoresService,
               private productsService: ProductsService,
               private notification: NotificationService) {
+
   }
 
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
-
     this.dataSource = new MatTableDataSource(this.allStores);
-
-    this.productsService.getProducts()
-      .subscribe(products => {
-        this.products = products;
-      })
   }
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

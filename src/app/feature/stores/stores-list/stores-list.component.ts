@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 import {ConfirmDialogComponent} from "../../../shared/confirm-dialog/confirm-dialog.component";
 import {StoreDialogComponent} from "../store-dialog/store-dialog.component";
 import {Product} from "../../products/product.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-stores-list',
@@ -14,7 +15,7 @@ import {Product} from "../../products/product.interface";
 export class StoresListComponent implements OnInit {
 
   displayedColumns!: string[];
-  @Input() products!: Product[];
+
   @Input() dataSource!: MatTableDataSource<Store>
   @Input() isLoggedIn!: boolean;
   @Output() updatedStore = new EventEmitter<Store>();
@@ -23,11 +24,14 @@ export class StoresListComponent implements OnInit {
   dialogRefStore!: MatDialogRef<StoreDialogComponent> | null;
   clickedStore!: Store;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+             ) {
+
   }
 
   ngOnInit(): void {
     this.displayedColumns = ["id", "address", "length", "width", "actions"];
+
   }
 
   openEditDialog(element: Store) {
@@ -63,16 +67,7 @@ export class StoresListComponent implements OnInit {
   }
 
 
-  isStoreBigEnough(store: Store) {
-    let areaOfAllProducts = 0;
-    this.products
-      .forEach(item => {
-        areaOfAllProducts += item.length * item.width;
-      })
-    const areaOfClickedStore = store.length * store.width;
-    const result = areaOfClickedStore / areaOfAllProducts;
-    return result >= 1;
-  }
+
 
   onClick(clickedStore: Store) {
     this.clickedStore = clickedStore;

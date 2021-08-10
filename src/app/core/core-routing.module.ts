@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'stores',
-    resolve: {stores: StoresResolver},
+    resolve: {stores: StoresResolver, products: ProductsResolver},
     component: StoresContainerComponent
   },
   {

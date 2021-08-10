@@ -4,12 +4,11 @@
     (filterValue)="applyFilter($event)">
   </app-filter>
   <app-stores-list
-    [products]="products"
     [dataSource]="dataSource"
     [isLoggedIn]="isLoggedIn"
     (updatedStore)="onEdit($event)"
-    (deletedStore)="onDelete($event)"
-  ></app-stores-list>
+    (deletedStore)="onDelete($event)">
+  </app-stores-list>
   <div class="add-new-btn">
     <button mat-raised-button [disabled]="!isLoggedIn" (click)="openAddNewDialog()" color="primary" type="button">
       Add new
