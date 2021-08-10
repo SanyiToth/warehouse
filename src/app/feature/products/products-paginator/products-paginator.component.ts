@@ -1,28 +1,32 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
 import {Product} from "../product.interface";
-import {PageEvent} from "@angular/material/paginator";
-import {ProductsService} from "../../../shared/services/products/products.service";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
+
 
 @Component({
   selector: 'app-products-paginator',
   templateUrl: './products-paginator.component.html',
   styleUrls: ['./products-paginator.component.css']
 })
-export class ProductsPaginatorComponent implements OnInit {
+export class ProductsPaginatorComponent implements AfterViewInit {
 
-  @Input() data!: Product[];
-  @Output() dataToParent = new EventEmitter<PageEvent>();
+  @Input() dataSource!: MatTableDataSource<Product>;
+  @Output() paginatorEventToParent = new EventEmitter<MatPaginator>();
 
-  pageEvent!: PageEvent;
-  datasource: null;
-  pageIndex!: number;
-  pageSize!: number;
-  length!: number;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productsService: ProductsService) {
+
+  constructor() {
   }
 
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
+
+  onPaginator(): void {
+    this.paginatorEventToParent.emit(this.paginator);
+  }
+
 }

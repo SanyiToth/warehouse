@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../product.interface";
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {switchMap, tap} from "rxjs/operators";
+import {switchMap} from "rxjs/operators";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {AuthService} from "../../../shared/auth/auth.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
@@ -15,15 +15,15 @@ import {MatTableDataSource} from "@angular/material/table";
   templateUrl: './products-container.component.html',
   styleUrls: ['./products-container.component.css']
 })
-export class ProductsContainerComponent implements OnInit, AfterViewInit {
+export class ProductsContainerComponent implements OnInit {
 
   dialogRefProduct!: MatDialogRef<ProductDialogComponent, Product> | null;
   dataSource!: MatTableDataSource<Product>;
   allProducts!: Product[];
   isLoggedIn!: boolean;
   filterValue!: string;
+  private paginator!: MatPaginator;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -40,9 +40,6 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.allProducts);
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
 
   openAddNewDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -105,6 +102,11 @@ export class ProductsContainerComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.filter = this.filterValue;
     this.dataSource._updateChangeSubscription();
+  }
+
+
+  applyPaginator(paginator: MatPaginator) {
+    this.paginator = paginator;
   }
 
   applyFilter(filterValue: string) {

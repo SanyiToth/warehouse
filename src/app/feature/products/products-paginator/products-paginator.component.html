@@ -1,6 +1,4 @@
-<mat-paginator
-               [length]="100"
-               [pageSize]="5"
+<mat-paginator (page)="onPaginator()"
                [pageSizeOptions]="[5, 10, 15]"
                aria-label="Select page">
 </mat-paginator>
