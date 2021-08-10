@@ -9,7 +9,6 @@ import {StoresService} from "../../../shared/services/stores/stores.service";
 import {NotificationService} from "../../../shared/services/notification/notification.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {ProductsService} from "../../../shared/services/products/products.service";
-import {Product} from "../../products/product.interface";
 
 @Component({
   selector: 'app-stores-container',
@@ -18,33 +17,28 @@ import {Product} from "../../products/product.interface";
 })
 export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
+
   dataSource!: MatTableDataSource<Store>;
   dialogRefStore!: MatDialogRef<StoreDialogComponent, Store> | null;
 
   isLoggedIn!: boolean;
   filterValue!: string;
   private paginator!: MatPaginator;
+  clickedStore!: Store;
 
-  products!: Product[];
 
   constructor(private route: ActivatedRoute,
               private dialog: MatDialog,
               private storesService: StoresService,
               private productsService: ProductsService,
               private notification: NotificationService) {
+
   }
 
   ngOnInit(): void {
     this.allStores = this.route.snapshot.data.stores;
-
     this.dataSource = new MatTableDataSource(this.allStores);
-
-    this.productsService.getProducts()
-      .subscribe(products => {
-        this.products = products;
-      })
   }
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -137,5 +131,9 @@ export class StoresContainerComponent implements OnInit, AfterViewInit {
 
   applyPaginator(paginator: MatPaginator) {
     this.paginator = paginator;
+  }
+
+  applyClickedStore(clickedStore: Store) {
+    this.clickedStore = clickedStore;
   }
 }
