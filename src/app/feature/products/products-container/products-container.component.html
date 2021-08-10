@@ -1,8 +1,8 @@
 <div class="products-container">
   <app-header (isLoggedInStatus)="applyLoggedInStatus($event)"></app-header>
-  <app-products-search-engine
+  <app-filter
     (filterValue)="applyFilter($event)">
-  </app-products-search-engine>
+  </app-filter>
   <app-products-list
     [isLoggedIn]="isLoggedIn"
     [dataSource]="dataSource"

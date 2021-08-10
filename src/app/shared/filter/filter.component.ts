@@ -2,7 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'app-products-search-engine',
+  selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
