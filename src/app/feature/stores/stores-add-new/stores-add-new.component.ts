@@ -8,7 +8,7 @@ import {StoresContainerComponent} from "../stores-container/stores-container.com
 @Component({
   selector: 'app-stores-add-new',
   templateUrl: './stores-add-new.component.html',
-  styleUrls: ['./stores-add-new.component.css']
+  styleUrls: ['./stores-add-new.component.scss']
 })
 export class StoresAddNewComponent {
 
