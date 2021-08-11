@@ -13,7 +13,7 @@ import {ProductsService} from "../../../shared/services/products/products.servic
 @Component({
   selector: 'app-stores-container',
   templateUrl: './stores-container.component.html',
-  styleUrls: ['./stores-container.component.css']
+  styleUrls: ['./stores-container.component.scss']
 })
 export class StoresContainerComponent implements OnInit, AfterViewInit {
   allStores!: Store[];
