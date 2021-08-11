@@ -5,7 +5,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 @Component({
   selector: 'app-product-dialog',
   templateUrl: './product-dialog.component.html',
-  styleUrls: ['./product-dialog.component.css']
+  styleUrls: ['./product-dialog.component.scss']
 })
 export class ProductDialogComponent implements OnInit {
 

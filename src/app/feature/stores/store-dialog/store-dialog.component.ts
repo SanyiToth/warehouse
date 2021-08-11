@@ -6,7 +6,7 @@ import {Store} from "../store.interface";
 @Component({
   selector: 'app-store-dialog',
   templateUrl: './store-dialog.component.html',
-  styleUrls: ['./store-dialog.component.css']
+  styleUrls: ['./store-dialog.component.scss']
 })
 export class StoreDialogComponent implements OnInit {
 
