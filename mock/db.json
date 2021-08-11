@@ -9,59 +9,60 @@
   ],
   "products": [
     {
-      "name": "laptop",
+      "name": "Product 1 ",
       "width": 2,
+      "length": 1,
+      "date": "2021-08-11T21:20:47.261Z",
+      "id": 1
+    },
+    {
+      "name": "Product 2 ",
+      "width": 1,
       "length": 2,
-      "date": "2021-08-10T08:02:16.536Z",
+      "date": "2021-08-11T21:20:58.306Z",
       "id": 2
     },
     {
-      "name": "printer",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-10T08:02:30.735Z",
+      "name": "Product 3",
+      "width": 1,
+      "length": 1,
+      "date": "2021-08-11T21:21:07.378Z",
       "id": 3
     },
     {
-      "name": "monitor",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-10T08:02:39.791Z",
+      "name": "Product 4",
+      "width": 1,
+      "length": 1,
+      "date": "2021-08-11T21:21:17.593Z",
       "id": 4
     },
     {
-      "name": "sasa",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-10T12:07:38.359Z",
+      "name": "Product 5",
+      "width": 3,
+      "length": 1,
+      "date": "2021-08-11T21:21:34.875Z",
       "id": 5
     },
     {
-      "name": "dsd",
-      "width": 2,
-      "length": 2,
-      "date": "2021-08-10T12:18:52.901Z",
-      "id": 7
+      "name": "Product 6",
+      "width": 1,
+      "length": 1,
+      "date": "2021-08-11T21:21:45.499Z",
+      "id": 6
     }
   ],
   "stores": [
     {
-      "address": "sddad",
+      "address": "lorem street 33",
       "length": 5,
       "width": 5,
-      "id": "bg59SX"
+      "id": "KdvWb9"
     },
     {
-      "address": "dada",
-      "length": 2,
-      "width": 2,
-      "id": "YgOYKd"
-    },
-    {
-      "address": "dsds",
-      "length": 2,
-      "width": 2,
-      "id": "yORyee"
+      "address": "ipsum street 45",
+      "length": 3,
+      "width": 1,
+      "id": "CiPGw1"
     }
   ]
 }
