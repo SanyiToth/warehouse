@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {FormsModule} from "@angular/forms";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -16,17 +17,18 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatListModule,
-    RouterModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatListModule,
+        RouterModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        FormsModule,
+        MatTooltipModule
+    ],
   exports: [
     HeaderComponent
   ]

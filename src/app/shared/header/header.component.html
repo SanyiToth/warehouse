@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <mat-nav-list fxLayout="row" *ngFor="let route of routes">
+  <mat-nav-list *ngFor="let route of routes">
     <button mat-button [routerLink]="route.routerLink">{{route.path}}</button>
   </mat-nav-list>
   <span class="spacer"></span>
@@ -11,11 +11,9 @@
     </button>
   </ng-template>
   <ng-template #logoutTpl>
-    <span>{{loggedInUser?.name}}</span>
-    <button mat-button (click)="onLogOut()">
-      Logout
+    <span class="name">{{loggedInUser.name}}</span>
+    <button mat-icon-button (click)="onLogOut()">
+      <mat-icon matTooltip="Logout">logout</mat-icon>
     </button>
   </ng-template>
-
-
 </mat-toolbar>
